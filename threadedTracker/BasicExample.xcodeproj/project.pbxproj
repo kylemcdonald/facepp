@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		279AA89D144228CC008EBF56 /* threadedTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AA89B144228CC008EBF56 /* threadedTracker.cpp */; };
+		279AAAC0144228DC008EBF56 /* DPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279AAAA6144228DC008EBF56 /* DPP.framework */; };
+		279AAAC1144228DC008EBF56 /* EDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279AAAA7144228DC008EBF56 /* EDSDK.framework */; };
+		279AAAC2144228DC008EBF56 /* EdsExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB2144228DC008EBF56 /* EdsExamples.cpp */; };
+		279AAAC3144228DC008EBF56 /* EdsException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB4144228DC008EBF56 /* EdsException.cpp */; };
+		279AAAC4144228DC008EBF56 /* EdsStrings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB6144228DC008EBF56 /* EdsStrings.cpp */; };
+		279AAAC5144228DC008EBF56 /* EdsWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB8144228DC008EBF56 /* EdsWrapper.cpp */; };
+		279AAAC6144228DC008EBF56 /* ofxEdsdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAABB144228DC008EBF56 /* ofxEdsdk.cpp */; };
+		279AAAD4144228EC008EBF56 /* DPP.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 279AAAA6144228DC008EBF56 /* DPP.framework */; };
+		279AAAD5144228EC008EBF56 /* EDSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 279AAAA7144228DC008EBF56 /* EDSDK.framework */; };
 		92EF52711442222600211B8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52621442222600211B8B /* main.cpp */; };
-		92EF52721442222600211B8B /* barycentric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52641442222600211B8B /* barycentric.cpp */; };
-		92EF52731442222600211B8B /* meshPointAdder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52661442222600211B8B /* meshPointAdder.cpp */; };
-		92EF52741442222600211B8B /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52691442222600211B8B /* triangle.cpp */; };
-		92EF52751442222600211B8B /* TriangleWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF526B1442222600211B8B /* TriangleWrapper.cpp */; };
-		92EF52761442222600211B8B /* triangleUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF526D1442222600211B8B /* triangleUtils.cpp */; };
 		92EF52771442222600211B8B /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF526F1442222600211B8B /* testApp.cpp */; };
 		92EF52901442223A00211B8B /* Calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52861442223A00211B8B /* Calibration.cpp */; };
 		92EF52911442223A00211B8B /* ContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52871442223A00211B8B /* ContourFinder.cpp */; };
@@ -75,6 +80,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				279AAAD4144228EC008EBF56 /* DPP.framework in CopyFiles */,
+				279AAAD5144228EC008EBF56 /* EDSDK.framework in CopyFiles */,
 				BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,17 +89,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		279AA89B144228CC008EBF56 /* threadedTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = threadedTracker.cpp; path = ../../../apps/facepp/SharedCode/threadedTracker.cpp; sourceTree = SOURCE_ROOT; };
+		279AA89C144228CC008EBF56 /* threadedTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = threadedTracker.h; path = ../../../apps/facepp/SharedCode/threadedTracker.h; sourceTree = SOURCE_ROOT; };
+		279AAAA5144228DC008EBF56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/.gitignore; sourceTree = SOURCE_ROOT; };
+		279AAAA6144228DC008EBF56 /* DPP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DPP.framework; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/DPP.framework; sourceTree = SOURCE_ROOT; };
+		279AAAA7144228DC008EBF56 /* EDSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EDSDK.framework; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/EDSDK.framework; sourceTree = SOURCE_ROOT; };
+		279AAAA8144228DC008EBF56 /* readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/readme; sourceTree = SOURCE_ROOT; };
+		279AAAAA144228DC008EBF56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxEdsdk/lib/EDSDK/Header/.gitignore; sourceTree = SOURCE_ROOT; };
+		279AAAAB144228DC008EBF56 /* EDSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDSDK.h; path = ../../../addons/ofxEdsdk/lib/EDSDK/Header/EDSDK.h; sourceTree = SOURCE_ROOT; };
+		279AAAAC144228DC008EBF56 /* EDSDKErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDSDKErrors.h; path = ../../../addons/ofxEdsdk/lib/EDSDK/Header/EDSDKErrors.h; sourceTree = SOURCE_ROOT; };
+		279AAAAD144228DC008EBF56 /* EDSDKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDSDKTypes.h; path = ../../../addons/ofxEdsdk/lib/EDSDK/Header/EDSDKTypes.h; sourceTree = SOURCE_ROOT; };
+		279AAAAE144228DC008EBF56 /* readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme; path = ../../../addons/ofxEdsdk/lib/EDSDK/Header/readme; sourceTree = SOURCE_ROOT; };
+		279AAAB2144228DC008EBF56 /* EdsExamples.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EdsExamples.cpp; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsExamples.cpp; sourceTree = SOURCE_ROOT; };
+		279AAAB3144228DC008EBF56 /* EdsExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EdsExamples.h; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsExamples.h; sourceTree = SOURCE_ROOT; };
+		279AAAB4144228DC008EBF56 /* EdsException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EdsException.cpp; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsException.cpp; sourceTree = SOURCE_ROOT; };
+		279AAAB5144228DC008EBF56 /* EdsException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EdsException.h; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsException.h; sourceTree = SOURCE_ROOT; };
+		279AAAB6144228DC008EBF56 /* EdsStrings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EdsStrings.cpp; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsStrings.cpp; sourceTree = SOURCE_ROOT; };
+		279AAAB7144228DC008EBF56 /* EdsStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EdsStrings.h; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsStrings.h; sourceTree = SOURCE_ROOT; };
+		279AAAB8144228DC008EBF56 /* EdsWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EdsWrapper.cpp; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsWrapper.cpp; sourceTree = SOURCE_ROOT; };
+		279AAAB9144228DC008EBF56 /* EdsWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EdsWrapper.h; path = ../../../addons/ofxEdsdk/src/EdsWrapper/EdsWrapper.h; sourceTree = SOURCE_ROOT; };
+		279AAABA144228DC008EBF56 /* FixedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FixedQueue.h; path = ../../../addons/ofxEdsdk/src/FixedQueue.h; sourceTree = SOURCE_ROOT; };
+		279AAABB144228DC008EBF56 /* ofxEdsdk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxEdsdk.cpp; path = ../../../addons/ofxEdsdk/src/ofxEdsdk.cpp; sourceTree = SOURCE_ROOT; };
+		279AAABC144228DC008EBF56 /* ofxEdsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxEdsdk.h; path = ../../../addons/ofxEdsdk/src/ofxEdsdk.h; sourceTree = SOURCE_ROOT; };
+		279AAABD144228DC008EBF56 /* RateTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RateTimer.h; path = ../../../addons/ofxEdsdk/src/RateTimer.h; sourceTree = SOURCE_ROOT; };
 		92EF52621442222600211B8B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
-		92EF52641442222600211B8B /* barycentric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = barycentric.cpp; path = src/mesh/barycentric.cpp; sourceTree = SOURCE_ROOT; };
-		92EF52651442222600211B8B /* barycentric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = barycentric.h; path = src/mesh/barycentric.h; sourceTree = SOURCE_ROOT; };
-		92EF52661442222600211B8B /* meshPointAdder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = meshPointAdder.cpp; path = src/mesh/meshPointAdder.cpp; sourceTree = SOURCE_ROOT; };
-		92EF52671442222600211B8B /* meshPointAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meshPointAdder.h; path = src/mesh/meshPointAdder.h; sourceTree = SOURCE_ROOT; };
-		92EF52691442222600211B8B /* triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = triangle.cpp; path = src/mesh/triangle/triangle.cpp; sourceTree = SOURCE_ROOT; };
-		92EF526A1442222600211B8B /* triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = triangle.h; path = src/mesh/triangle/triangle.h; sourceTree = SOURCE_ROOT; };
-		92EF526B1442222600211B8B /* TriangleWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleWrapper.cpp; path = src/mesh/triangle/TriangleWrapper.cpp; sourceTree = SOURCE_ROOT; };
-		92EF526C1442222600211B8B /* TriangleWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleWrapper.h; path = src/mesh/triangle/TriangleWrapper.h; sourceTree = SOURCE_ROOT; };
-		92EF526D1442222600211B8B /* triangleUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = triangleUtils.cpp; path = src/mesh/triangleUtils.cpp; sourceTree = SOURCE_ROOT; };
-		92EF526E1442222600211B8B /* triangleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = triangleUtils.h; path = src/mesh/triangleUtils.h; sourceTree = SOURCE_ROOT; };
 		92EF526F1442222600211B8B /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testApp.cpp; path = src/testApp.cpp; sourceTree = SOURCE_ROOT; };
 		92EF52701442222600211B8B /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = src/testApp.h; sourceTree = SOURCE_ROOT; };
 		92EF52791442223A00211B8B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxCv/libs/.gitignore; sourceTree = SOURCE_ROOT; };
@@ -243,6 +263,8 @@
 				E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */,
 				E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */,
 				92EF532E1442229000211B8B /* opencv.a in Frameworks */,
+				279AAAC0144228DC008EBF56 /* DPP.framework in Frameworks */,
+				279AAAC1144228DC008EBF56 /* EDSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,42 +280,107 @@
 			name = ofxCv;
 			sourceTree = "<group>";
 		};
+		279AA89A144228CC008EBF56 /* SharedCode */ = {
+			isa = PBXGroup;
+			children = (
+				279AA89B144228CC008EBF56 /* threadedTracker.cpp */,
+				279AA89C144228CC008EBF56 /* threadedTracker.h */,
+			);
+			name = SharedCode;
+			path = ../../../apps/facepp/SharedCode;
+			sourceTree = SOURCE_ROOT;
+		};
+		279AA89E144228DB008EBF56 /* ofxEdsdk */ = {
+			isa = PBXGroup;
+			children = (
+				279AAAA2144228DC008EBF56 /* lib */,
+				279AAAB0144228DC008EBF56 /* src */,
+			);
+			name = ofxEdsdk;
+			path = ../../../addons/ofxEdsdk;
+			sourceTree = SOURCE_ROOT;
+		};
+		279AAAA2144228DC008EBF56 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				279AAAA3144228DC008EBF56 /* EDSDK */,
+			);
+			name = lib;
+			path = ../../../addons/ofxEdsdk/lib;
+			sourceTree = SOURCE_ROOT;
+		};
+		279AAAA3144228DC008EBF56 /* EDSDK */ = {
+			isa = PBXGroup;
+			children = (
+				279AAAA4144228DC008EBF56 /* Framework */,
+				279AAAA9144228DC008EBF56 /* Header */,
+			);
+			name = EDSDK;
+			path = ../../../addons/ofxEdsdk/lib/EDSDK;
+			sourceTree = SOURCE_ROOT;
+		};
+		279AAAA4144228DC008EBF56 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				279AAAA5144228DC008EBF56 /* .gitignore */,
+				279AAAA6144228DC008EBF56 /* DPP.framework */,
+				279AAAA7144228DC008EBF56 /* EDSDK.framework */,
+				279AAAA8144228DC008EBF56 /* readme */,
+			);
+			name = Framework;
+			path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework;
+			sourceTree = SOURCE_ROOT;
+		};
+		279AAAA9144228DC008EBF56 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				279AAAAA144228DC008EBF56 /* .gitignore */,
+				279AAAAB144228DC008EBF56 /* EDSDK.h */,
+				279AAAAC144228DC008EBF56 /* EDSDKErrors.h */,
+				279AAAAD144228DC008EBF56 /* EDSDKTypes.h */,
+				279AAAAE144228DC008EBF56 /* readme */,
+			);
+			name = Header;
+			path = ../../../addons/ofxEdsdk/lib/EDSDK/Header;
+			sourceTree = SOURCE_ROOT;
+		};
+		279AAAB0144228DC008EBF56 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				279AAAB1144228DC008EBF56 /* EdsWrapper */,
+				279AAABA144228DC008EBF56 /* FixedQueue.h */,
+				279AAABB144228DC008EBF56 /* ofxEdsdk.cpp */,
+				279AAABC144228DC008EBF56 /* ofxEdsdk.h */,
+				279AAABD144228DC008EBF56 /* RateTimer.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxEdsdk/src;
+			sourceTree = SOURCE_ROOT;
+		};
+		279AAAB1144228DC008EBF56 /* EdsWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				279AAAB2144228DC008EBF56 /* EdsExamples.cpp */,
+				279AAAB3144228DC008EBF56 /* EdsExamples.h */,
+				279AAAB4144228DC008EBF56 /* EdsException.cpp */,
+				279AAAB5144228DC008EBF56 /* EdsException.h */,
+				279AAAB6144228DC008EBF56 /* EdsStrings.cpp */,
+				279AAAB7144228DC008EBF56 /* EdsStrings.h */,
+				279AAAB8144228DC008EBF56 /* EdsWrapper.cpp */,
+				279AAAB9144228DC008EBF56 /* EdsWrapper.h */,
+			);
+			name = EdsWrapper;
+			path = ../../../addons/ofxEdsdk/src/EdsWrapper;
+			sourceTree = SOURCE_ROOT;
+		};
 		92EF52611442222600211B8B /* src */ = {
 			isa = PBXGroup;
 			children = (
 				92EF52621442222600211B8B /* main.cpp */,
-				92EF52631442222600211B8B /* mesh */,
 				92EF526F1442222600211B8B /* testApp.cpp */,
 				92EF52701442222600211B8B /* testApp.h */,
 			);
 			path = src;
-			sourceTree = SOURCE_ROOT;
-		};
-		92EF52631442222600211B8B /* mesh */ = {
-			isa = PBXGroup;
-			children = (
-				92EF52641442222600211B8B /* barycentric.cpp */,
-				92EF52651442222600211B8B /* barycentric.h */,
-				92EF52661442222600211B8B /* meshPointAdder.cpp */,
-				92EF52671442222600211B8B /* meshPointAdder.h */,
-				92EF52681442222600211B8B /* triangle */,
-				92EF526D1442222600211B8B /* triangleUtils.cpp */,
-				92EF526E1442222600211B8B /* triangleUtils.h */,
-			);
-			name = mesh;
-			path = src/mesh;
-			sourceTree = SOURCE_ROOT;
-		};
-		92EF52681442222600211B8B /* triangle */ = {
-			isa = PBXGroup;
-			children = (
-				92EF52691442222600211B8B /* triangle.cpp */,
-				92EF526A1442222600211B8B /* triangle.h */,
-				92EF526B1442222600211B8B /* TriangleWrapper.cpp */,
-				92EF526C1442222600211B8B /* TriangleWrapper.h */,
-			);
-			name = triangle;
-			path = src/mesh/triangle;
 			sourceTree = SOURCE_ROOT;
 		};
 		92EF52781442223A00211B8B /* libs */ = {
@@ -672,6 +759,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				279AA89E144228DB008EBF56 /* ofxEdsdk */,
 				92EF52C31442229000211B8B /* ofxOpenCv */,
 				92EF52981442225F00211B8B /* ofxFaceTracker */,
 				278632B514421A020029784F /* ofxCv */,
@@ -726,6 +814,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				279AA89A144228CC008EBF56 /* SharedCode */,
 				92EF52611442222600211B8B /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
@@ -829,11 +918,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				92EF52711442222600211B8B /* main.cpp in Sources */,
-				92EF52721442222600211B8B /* barycentric.cpp in Sources */,
-				92EF52731442222600211B8B /* meshPointAdder.cpp in Sources */,
-				92EF52741442222600211B8B /* triangle.cpp in Sources */,
-				92EF52751442222600211B8B /* TriangleWrapper.cpp in Sources */,
-				92EF52761442222600211B8B /* triangleUtils.cpp in Sources */,
 				92EF52771442222600211B8B /* testApp.cpp in Sources */,
 				92EF52901442223A00211B8B /* Calibration.cpp in Sources */,
 				92EF52911442223A00211B8B /* ContourFinder.cpp in Sources */,
@@ -854,6 +938,12 @@
 				92EF52C01442227A00211B8B /* Expression.cpp in Sources */,
 				92EF52C11442227A00211B8B /* ExpressionClassifier.cpp in Sources */,
 				92EF52C21442227A00211B8B /* ofxFaceTracker.cpp in Sources */,
+				279AA89D144228CC008EBF56 /* threadedTracker.cpp in Sources */,
+				279AAAC2144228DC008EBF56 /* EdsExamples.cpp in Sources */,
+				279AAAC3144228DC008EBF56 /* EdsException.cpp in Sources */,
+				279AAAC4144228DC008EBF56 /* EdsStrings.cpp in Sources */,
+				279AAAC5144228DC008EBF56 /* EdsWrapper.cpp in Sources */,
+				279AAAC6144228DC008EBF56 /* ofxEdsdk.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,6 +1021,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Users/kyle/Documents/openFrameworks/addons/ofxEdsdk/lib/EDSDK/Framework,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1063,6 +1154,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Users/kyle/Documents/openFrameworks/addons/ofxEdsdk/lib/EDSDK/Framework,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
