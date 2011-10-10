@@ -1,24 +1,30 @@
 #include "testApp.h"
+#include "useful.h"
 
 using namespace ofxCv;
 
 void testApp::setup() {
 	
 	//ofSetVerticalSync(true);
+
+	
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
 	
 	
 	TT.setup();
 	
-#ifndef USE_CANON	
-	cam.initGrabber(640, 480);
-#else
-	camera.setup();
-#endif
+	panel.setup("Control Panel", 1024-310, 5, 300, 600);
+	panel.addPanel("Cam");
+	panel.setWhichPanel("Cam");
+	panel.addSlider("camResize", "camResize", 0.5, 0.1, 1.0, false);
+		
 	
+	IM.setup();
 	
 	tracker.setup();
-	tracker.setRescale(.5);
+	tracker.setRescale(.25);
+	tracker.setIterations(20);
+
 	
 	TT.start();
 	
@@ -26,58 +32,22 @@ void testApp::setup() {
 
 void testApp::update() {
 
-#ifndef USE_CANON
-	cam.update();
-	if(cam.isFrameNew()) {
-		tracker.update(toCv(cam));
+	tracker.setRescale(panel.getValueF("camResize"));
+	TT.setScale(panel.getValueF("camResize"));
+	
+	
+	IM.update();
+	if (IM.isFrameNew()){
+		TT.copyPixels(IM.getTrackingPixels());
 	}
-
-#else
-
-	camera.update();
-	if(camera.isFrameNew()) {
-		tempToBeResized = camera.getLivePixels();
-		//float scale = 640.0f / 1056.0f;
-		//tempToBeResized.resize(1056*scale, 704*scale);
-		
-		TT.copyPixels(tempToBeResized);
-		
-		//tracker.update(toCv(tempToBeResized));
-		// process the live view with camera.getLivePixels()
-	}
-	if(camera.isPhotoNew()) {
-		// process the photo with camera.getPhotoPixels()
-		// or just save the photo to disk (jpg only):
-		camera.savePhoto(ofToString(ofGetFrameNum()) + ".jpg");
-	}
-#endif
-
 	TT.copyFaceTracker(tracker);
 
-	//printf("- frame - \n");
 }
 
 void testApp::draw() {
+	
 	ofSetColor(255);
-	
-	
-#ifndef USE_CANON	
-	cam.draw(0, 0);
-#else
-	camera.draw(0, 0);
-	// camera.drawPhoto(0, 0, 432, 288);
-	
-	if(camera.isLiveReady()) {
-		stringstream status;
-		status << camera.getWidth() << "x" << camera.getHeight() << " @ " <<
-		(int) ofGetFrameRate() << " app-fps " << " / " <<
-		(int) camera.getFrameRate() << " cam-fps";
-		ofDrawBitmapString(status.str(), 10, 20);
-	}
-#endif
-	
-	//return;
-	//ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
+	IM.draw();
 	
 	ofSetLineWidth(1);
 	tracker.draw();
@@ -90,11 +60,16 @@ void testApp::draw() {
 	leftEye.draw();
 	ofSetColor(ofColor::green);
 	rightEye.draw();
+	
+	
 }
 
 void testApp::keyPressed(int key) {
 	if(key == 'r') {
-		tracker.reset();
+		TT.setReset();
+	}
+	if (key == ' '){
+		IM.bSaveImages = !IM.bSaveImages;	
 	}
 }
 

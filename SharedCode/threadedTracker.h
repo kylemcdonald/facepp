@@ -13,11 +13,19 @@ class threadedTracker : public ofThread{
 public:
 	
 	
-	ofPixels pixelForTracker;
-	ofPixels pixelInThreadForTracker;
+	unsigned char * pixelForTracker;
+	unsigned char * pixelInThreadForTracker;
+	
 	ofxFaceTracker * tracker;
 	ofxFaceTracker * trackerInThread;
+	
+	ofPixels colorPix;
+	
+	
 	bool bHavePixels;
+	bool bResetTracker;
+	float scale;
+	
 	
 	void setup(){
 		
@@ -31,6 +39,15 @@ public:
 		trackerInThread = new ofxFaceTracker();
 		trackerInThread->setup();
 		trackerInThread->setRescale(.5);
+		bResetTracker = false;
+		
+		colorPix.allocate(640, 480, OF_PIXELS_RGB);
+		pixelForTracker = new unsigned char[640*480*3];
+		pixelInThreadForTracker = new unsigned char[640*480*3];
+		
+		//pixelInThreadForTracker.allocate(640, 480, OF_PIXELS_RGB);
+		//trackerInThread->setIterations(6);
+		//tracker->setIterations(6);
 	}
 	//--------------------------
 	threadedTracker(){
@@ -40,6 +57,10 @@ public:
 		stop();
 		//delete tracker;
 		//delete trackerInThread;
+	}
+	
+	void setScale(float _scaleIn){
+		scale = _scaleIn;	
 	}
 	
 	void start(){
@@ -56,11 +77,26 @@ public:
 		while( isThreadRunning() != 0 ){
 			if (bHavePixels == true){
 				if( lock() ){
-					pixelInThreadForTracker = pixelForTracker;
+					memcpy(pixelInThreadForTracker, pixelForTracker, 640*480*3);
+					
+					//pixelInThreadForTracker = pixelForTracker;
 					unlock();
+					
 				}
-				trackerInThread->update(ofxCv::toCv(pixelInThreadForTracker));
+				
+				colorPix.setFromExternalPixels(pixelInThreadForTracker, 640, 480, 3);
+				
+				trackerInThread->update(ofxCv::toCv(colorPix));
+				if (bResetTracker == true){
+					trackerInThread->reset();
+					bResetTracker = false;
+				}
+				
 				if( lock() ){
+					
+					trackerInThread->setRescale(scale);
+					tracker->setRescale(scale);
+					
 					memcpy(tracker, trackerInThread, sizeof(ofxFaceTracker));
 					unlock();
 				}
@@ -73,13 +109,17 @@ public:
 	}
 	
 	//--------------------------
-	void copyPixels(ofPixels & input){
+	void copyPixels(unsigned char * input){
 		
 		if( lock() ){
-			pixelForTracker = input;
+			memcpy(pixelForTracker, input, 640*480*3);
 			bHavePixels = true;
 			unlock();
 		}
+	}
+	
+	void setReset(){
+		bResetTracker = true;	
 	}
 	
 	void copyFaceTracker(ofxFaceTracker & trackerOut){

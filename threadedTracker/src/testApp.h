@@ -6,9 +6,10 @@
 #include "ofxEdsdk.h"
 #include "threadedTracker.h"
 
-#define USE_CANON
+//#define USE_CANON
 
-
+#include "ofxAutoControlPanel.h"
+#include "inputManager.h"
 
 
 class testApp : public ofBaseApp {
@@ -19,13 +20,9 @@ public:
 	void keyPressed(int key);
 	void exit();
 	
-#ifndef USE_CANON
-	ofVideoGrabber cam;
-#else
-	ofxEdsdk::Camera camera;
-	ofPixels tempToBeResized;
-#endif
-	
+	inputManager IM;
 	threadedTracker TT;
 	ofxFaceTracker tracker;
+	ofxAutoControlPanel panel;
+	
 };
