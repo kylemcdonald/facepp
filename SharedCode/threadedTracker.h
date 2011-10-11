@@ -7,6 +7,8 @@
 
 //using namespace ofxCv;
 
+// to do, make this thread only run when the testApp tracker's thread doesn't find faces. 
+
 
 class threadedTracker : public ofThread{
 	
@@ -16,9 +18,6 @@ public:
 	unsigned char * pixelForTracker;
 	unsigned char * pixelInThreadForTracker;
 	
-	ofPoint pts[66];
-	
-	ofxFaceTracker * tracker;
 	ofxFaceTracker * trackerInThread;
 	
 	ofPixels colorPix;
@@ -37,18 +36,11 @@ public:
 		// why?
 		
 		bHavePixels = false;
-		tracker = new ofxFaceTracker();
-		tracker->setup();
-		tracker->setRescale(.5);
-		
 		bResetTracker = false;
-		
 		colorPix.allocate(640, 480, OF_PIXELS_RGB);
 		pixelForTracker = new unsigned char[640*480*3];
 		pixelInThreadForTracker = new unsigned char[640*480*3];
-		
 		scale = 0.5;
-		
 		nFramesGotOne = 0;
 		
 	}
@@ -59,8 +51,6 @@ public:
 	~threadedTracker(){
 		stop();
 		ofSleepMillis(50);
-		//delete tracker;
-		//delete trackerInThread;
 	}
 	
 	void setScale(float _scaleIn){
@@ -84,28 +74,41 @@ public:
 		trackerInThread->setRescale(scale);
 		float myScale = scale;
 		
-		ofPoint myPts[66];
 		
 		while( isThreadRunning() != 0 ){
 			if (bHavePixels == true){
+				
+				
+				//-------------------------- copy the pixels in, via a lock
+				
 				if( lock() ){
 					memcpy(pixelInThreadForTracker, pixelForTracker, 640*480*3);
 					unlock();
 				}
 				
+				//-------------------------- put them in a toCv friendly format, then update the tracker
+				
 				colorPix.setFromExternalPixels(pixelInThreadForTracker, 640, 480, 3);
 				trackerInThread->update(ofxCv::toCv(colorPix));
+				
+				//-------------------------- keep track of how much we've found, so the main app can track or not				
+				
 				if (trackerInThread->getFound()){
 					nFramesGotOne++;
 				} else {
 					nFramesGotOne = 0;	
 				}
 				
+				//-------------------------- reset if we need to 
+				
 				if (bResetTracker == true){
 					trackerInThread->reset();
 					bResetTracker = false;
 				}
 
+				
+				//-------------------------- if our scale has changed, reallocate. 
+				
 				if (fabs(myScale - scale) > 0.05){
 					delete trackerInThread;
 					trackerInThread = new ofxFaceTracker();
@@ -114,22 +117,10 @@ public:
 					myScale = scale;
 				}
 				
-				if (trackerInThread->getFound()){
-					if (trackerInThread->getImageMesh().getVertices().size() == 66){
-						for (int i = 0; i < 66; i++){
-							myPts[i] = 	trackerInThread->getImageMesh().getVertices()[i];
-						}
-					}
-				}
+				//-------------------------- sleep for a while, doesn't need to be fast
 				
-				if( lock() ){
-					//printf("copy \n");
-					memcpy(pts, myPts, 66*sizeof(ofPoint));
-					//memcpy(tracker, trackerInThread, sizeof(ofxFaceTracker));
-					unlock();
-				}
 				ofSleepMillis(80);
-				//printf("-- tracked --\n");
+		
 			} else {
 				ofSleepMillis(10);
 			}
@@ -140,7 +131,6 @@ public:
 	
 	//--------------------------
 	void copyPixels(unsigned char * input){
-		
 		if( lock() ){
 			memcpy(pixelForTracker, input, 640*480*3);
 			bHavePixels = true;
@@ -152,22 +142,8 @@ public:
 		bResetTracker = true;	
 	}
 	
-	void copyPts(ofPoint * ptsToCopyTo){
-		if (lock()){
-			memcpy(ptsToCopyTo, pts, 66*sizeof(ofPoint));
-			unlock();
-		}
-	}
 	
-	void copyFaceTracker(ofxFaceTracker & trackerOut){
-		// could this be a different lock?
-		if (lock()){
-			//memcpy(&trackerOut, tracker); 
-			memcpy(&trackerOut, tracker, sizeof(ofxFaceTracker));
-			unlock();
-		}
-	}
-	
+		
 	
 	
 };
