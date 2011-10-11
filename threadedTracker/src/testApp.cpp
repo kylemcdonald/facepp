@@ -39,6 +39,7 @@ void testApp::setup() {
 	TT.start();
 	
 	LS.setup();
+	TS.setup(1056, 704); // needs to match the input resolution
 		
 }
 
@@ -68,7 +69,10 @@ void testApp::update() {
 	ofMesh temp;
 	temp = tracker.getImageMesh();
 	LS.update(temp);
-
+	
+	//TS.update(tracker, canon.getLiveTexture());
+	//RS.update(true, // need to switch this for a detector based on thresholding the mouth openness
+	// tracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH).getCentroid2D());
 }
 
 void testApp::draw() {

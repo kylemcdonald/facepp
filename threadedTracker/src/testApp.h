@@ -14,7 +14,10 @@
 #include "meanMeshRenderer.h"
 #include "meshForeheadAdder.h"	// just testing
 #include "meshPointAdder.h"
+
 #include "lightScene.h"
+#include "ThirdEyeScene.h"
+#include "RibbonsScene.h"
 
 class testApp : public ofBaseApp {
 public:
@@ -36,4 +39,6 @@ public:
 	meshPointAdder MPA;
 	
 	lightScene LS;
+	ThirdEyeScene TS;
+	RibbonsScene RS;
 };
