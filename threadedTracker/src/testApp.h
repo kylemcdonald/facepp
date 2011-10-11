@@ -13,7 +13,8 @@
 #include "expressionManager.h"
 #include "meanMeshRenderer.h"
 #include "meshForeheadAdder.h"	// just testing
-
+#include "meshPointAdder.h"
+#include "lightScene.h"
 
 class testApp : public ofBaseApp {
 public:
@@ -32,5 +33,7 @@ public:
 	
 	ofPixels trackingPixels;
 	
+	meshPointAdder MPA;
 	
+	lightScene LS;
 };

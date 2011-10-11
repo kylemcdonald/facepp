@@ -54,6 +54,14 @@
 		92D1ABB5144330E300BB124A /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D1ABAF144330E300BB124A /* tinyxmlparser.cpp */; };
 		92D1ABB6144330E300BB124A /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D1ABB1144330E300BB124A /* ofxXmlSettings.cpp */; };
 		92E445521444427600C7AE2B /* threadedTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E445501444427600C7AE2B /* threadedTracker.cpp */; };
+		92E446221444790A00C7AE2B /* barycentric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E446171444790A00C7AE2B /* barycentric.cpp */; };
+		92E446231444790A00C7AE2B /* meshPointAdder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E446191444790A00C7AE2B /* meshPointAdder.cpp */; };
+		92E446241444790A00C7AE2B /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E4461C1444790A00C7AE2B /* triangle.cpp */; };
+		92E446251444790A00C7AE2B /* TriangleWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E4461E1444790A00C7AE2B /* TriangleWrapper.cpp */; };
+		92E446261444790A00C7AE2B /* triangleUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E446201444790A00C7AE2B /* triangleUtils.cpp */; };
+		92E447A61444947600C7AE2B /* lightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E447A41444947600C7AE2B /* lightScene.cpp */; };
+		92E447AC144494C800C7AE2B /* particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E447A8144494C800C7AE2B /* particle.cpp */; };
+		92E447AD144494C800C7AE2B /* spring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E447AA144494C800C7AE2B /* spring.cpp */; };
 		92E71E781443BE74003984B7 /* expressionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E71E731443BE74003984B7 /* expressionManager.cpp */; };
 		92E71E791443BE74003984B7 /* meanMeshRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */; };
 		92E720B714440043003984B7 /* meshForeheadAdder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E720B614440043003984B7 /* meshForeheadAdder.cpp */; };
@@ -306,6 +314,22 @@
 		92D1ABD0144331CB00BB124A /* ofxAutoControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxAutoControlPanel.h; path = src/utils/ofxControlPanel/ofxAutoControlPanel.h; sourceTree = SOURCE_ROOT; };
 		92E445501444427600C7AE2B /* threadedTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = threadedTracker.cpp; sourceTree = "<group>"; };
 		92E445511444427600C7AE2B /* threadedTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threadedTracker.h; sourceTree = "<group>"; };
+		92E446171444790A00C7AE2B /* barycentric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = barycentric.cpp; sourceTree = "<group>"; };
+		92E446181444790A00C7AE2B /* barycentric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barycentric.h; sourceTree = "<group>"; };
+		92E446191444790A00C7AE2B /* meshPointAdder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = meshPointAdder.cpp; path = mesh/meshPointAdder.cpp; sourceTree = "<group>"; };
+		92E4461A1444790A00C7AE2B /* meshPointAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meshPointAdder.h; path = mesh/meshPointAdder.h; sourceTree = "<group>"; };
+		92E4461C1444790A00C7AE2B /* triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangle.cpp; sourceTree = "<group>"; };
+		92E4461D1444790A00C7AE2B /* triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triangle.h; sourceTree = "<group>"; };
+		92E4461E1444790A00C7AE2B /* TriangleWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleWrapper.cpp; sourceTree = "<group>"; };
+		92E4461F1444790A00C7AE2B /* TriangleWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleWrapper.h; sourceTree = "<group>"; };
+		92E446201444790A00C7AE2B /* triangleUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangleUtils.cpp; sourceTree = "<group>"; };
+		92E446211444790A00C7AE2B /* triangleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triangleUtils.h; sourceTree = "<group>"; };
+		92E447A41444947600C7AE2B /* lightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightScene.cpp; sourceTree = "<group>"; };
+		92E447A51444947600C7AE2B /* lightScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightScene.h; sourceTree = "<group>"; };
+		92E447A8144494C800C7AE2B /* particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = particle.cpp; sourceTree = "<group>"; };
+		92E447A9144494C800C7AE2B /* particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = particle.h; sourceTree = "<group>"; };
+		92E447AA144494C800C7AE2B /* spring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spring.cpp; sourceTree = "<group>"; };
+		92E447AB144494C800C7AE2B /* spring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spring.h; sourceTree = "<group>"; };
 		92E71E731443BE74003984B7 /* expressionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = expressionManager.cpp; path = src/analysis/expressionManager.cpp; sourceTree = SOURCE_ROOT; };
 		92E71E741443BE74003984B7 /* expressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expressionManager.h; path = src/analysis/expressionManager.h; sourceTree = SOURCE_ROOT; };
 		92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = meanMeshRenderer.cpp; path = src/rendering/meanMeshRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -879,6 +903,50 @@
 			path = ../SharedCode;
 			sourceTree = SOURCE_ROOT;
 		};
+		92E446161444790A00C7AE2B /* mesh */ = {
+			isa = PBXGroup;
+			children = (
+				92E446171444790A00C7AE2B /* barycentric.cpp */,
+				92E446181444790A00C7AE2B /* barycentric.h */,
+				92E4461B1444790A00C7AE2B /* triangle */,
+				92E446201444790A00C7AE2B /* triangleUtils.cpp */,
+				92E446211444790A00C7AE2B /* triangleUtils.h */,
+			);
+			path = mesh;
+			sourceTree = "<group>";
+		};
+		92E4461B1444790A00C7AE2B /* triangle */ = {
+			isa = PBXGroup;
+			children = (
+				92E4461C1444790A00C7AE2B /* triangle.cpp */,
+				92E4461D1444790A00C7AE2B /* triangle.h */,
+				92E4461E1444790A00C7AE2B /* TriangleWrapper.cpp */,
+				92E4461F1444790A00C7AE2B /* TriangleWrapper.h */,
+			);
+			path = triangle;
+			sourceTree = "<group>";
+		};
+		92E447A31444947600C7AE2B /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				92E447A7144494C800C7AE2B /* lightSp */,
+				92E447A41444947600C7AE2B /* lightScene.cpp */,
+				92E447A51444947600C7AE2B /* lightScene.h */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		92E447A7144494C800C7AE2B /* lightSp */ = {
+			isa = PBXGroup;
+			children = (
+				92E447A8144494C800C7AE2B /* particle.cpp */,
+				92E447A9144494C800C7AE2B /* particle.h */,
+				92E447AA144494C800C7AE2B /* spring.cpp */,
+				92E447AB144494C800C7AE2B /* spring.h */,
+			);
+			path = lightSp;
+			sourceTree = "<group>";
+		};
 		92E71E721443BE74003984B7 /* analysis */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +960,9 @@
 		92E71E751443BE74003984B7 /* rendering */ = {
 			isa = PBXGroup;
 			children = (
+				92E446191444790A00C7AE2B /* meshPointAdder.cpp */,
+				92E4461A1444790A00C7AE2B /* meshPointAdder.h */,
+				92E446161444790A00C7AE2B /* mesh */,
 				92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */,
 				92E71E771443BE74003984B7 /* meanMeshRenderer.h */,
 				92E720B514440043003984B7 /* meshForeheadAdder.h */,
@@ -914,6 +985,7 @@
 		92EF52611442222600211B8B /* src */ = {
 			isa = PBXGroup;
 			children = (
+				92E447A31444947600C7AE2B /* scenes */,
 				92E71E721443BE74003984B7 /* analysis */,
 				92E71E751443BE74003984B7 /* rendering */,
 				92EAE6F6144375D00087897A /* input */,
@@ -1285,6 +1357,14 @@
 				92E71E791443BE74003984B7 /* meanMeshRenderer.cpp in Sources */,
 				92E720B714440043003984B7 /* meshForeheadAdder.cpp in Sources */,
 				92E445521444427600C7AE2B /* threadedTracker.cpp in Sources */,
+				92E446221444790A00C7AE2B /* barycentric.cpp in Sources */,
+				92E446231444790A00C7AE2B /* meshPointAdder.cpp in Sources */,
+				92E446241444790A00C7AE2B /* triangle.cpp in Sources */,
+				92E446251444790A00C7AE2B /* TriangleWrapper.cpp in Sources */,
+				92E446261444790A00C7AE2B /* triangleUtils.cpp in Sources */,
+				92E447A61444947600C7AE2B /* lightScene.cpp in Sources */,
+				92E447AC144494C800C7AE2B /* particle.cpp in Sources */,
+				92E447AD144494C800C7AE2B /* spring.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

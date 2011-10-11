@@ -28,14 +28,18 @@ void testApp::setup() {
 	tracker.setRescale(.25);
 	tracker.setIterations(20);
 
-	EM.setup();
-	
-	TT.start();
 	
 	MMR.setup();
+	IM.setup();
+	MPA.setup();
+	MMR.setupMPAMesh();
 	
-	 IM.setup();
 	
+	EM.setup();
+	TT.start();
+	
+	LS.setup();
+		
 }
 
 void testApp::update() {
@@ -61,6 +65,9 @@ void testApp::update() {
 	
 	MMR.clear();
 
+	ofMesh temp;
+	temp = tracker.getImageMesh();
+	LS.update(temp);
 
 }
 
@@ -70,33 +77,53 @@ void testApp::draw() {
 	IM.draw();
 	
 	ofSetLineWidth(1);
-	tracker.draw();
-	
-	ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
-	ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
-	
-	//ofSetLineWidth(2);
-	//ofSetColor(ofColor::red);
-	//leftEye.draw();
-	//ofSetColor(ofColor::green);
-	//rightEye.draw();
-	
+	//tracker.draw();
 	
 	EM.draw();
 	
 	//MMR.draw();
-	ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+	
+	// --------------------------------------------- draw the MMR on the face
+	/*ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
 	MMR.draw(tracker);
 	ofDisableBlendMode();
+	*/
 	
 	
-	
+	// --------------------------------------------- show how foreheads work
 	/*ofMesh temp = tracker.getImageMesh();
 	addForheadToFaceMesh(temp);
 	temp.drawWireframe(); //.draw();
 	*/
 	
 	
+	// --------------------------------------------- see MPA in action (colored triangles)
+	//ofSeedRandom(0);
+//	ofMesh temp = tracker.getImageMesh();
+//	//cout << temp.getVertices().size() << endl;
+//	if (temp.getVertices().size() > 0){
+//		addForheadToFaceMesh(temp);
+//		ofMesh currentMesh	= convertFromIndices(temp);
+//		ofMesh temp2		= MPA.returnMeshWarpedToThisMesh(currentMesh);
+//		//temp.drawWireframe();
+//		ofEnableAlphaBlending();
+//		ofFill();
+//		for (int i = 0; i < temp2.getVertices().size()/3; i++){
+//			
+//			ofSetColor(ofRandom(0,255), ofRandom(0,255), ofRandom(0,255), 70 );
+//			ofTriangle(temp2.getVertices()[i*3],
+//					   temp2.getVertices()[i*3+1],
+//					   temp2.getVertices()[i*3+2]);
+//			
+//		}
+//		
+//		
+//	}
+	
+	
+	// --------------------------------------------- the light scene
+	
+	LS.draw(640,480);
 }
 
 void testApp::keyPressed(int key) {

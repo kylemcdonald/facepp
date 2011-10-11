@@ -24,10 +24,10 @@ void inputManager::setup() {
 	bSaveImages = false;	// for live input, for making a movie.
 	bFrameNew = false;
 	
-	inputType = edsdk;
+	inputType = file;
 	
 	if (inputType == file){
-		video.loadMovie("face.mov");
+		video.loadMovie("face3.mov");
 		video.play();
 		float scale = 480.0 / (float)video.height;
 		pixelsSmaller.allocate(video.width*scale, video.height*scale, OF_IMAGE_COLOR);

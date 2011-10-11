@@ -21,3 +21,68 @@ string ZeroPadNumber(int num){
 		ret = "0" + ret;
 	return ret;
 }
+
+
+ofMesh convertFromIndices(const ofMesh& mesh) {
+	ofMesh result;
+	// have to do a const_cast because ofMesh::get*() is not const correct
+	ofMesh& cmesh = const_cast<ofMesh&>(mesh);
+	int vertices = mesh.getNumVertices();
+	int colors = mesh.getNumColors();
+	int normals = mesh.getNumNormals();
+	int texcoords = mesh.getNumTexCoords();
+	int indices = mesh.getNumIndices();
+	for(int i = 0; i < indices; i++) {
+		int cur = cmesh.getIndex(i);
+		if(vertices > 0) {
+			result.addVertex(cmesh.getVertex(cur));
+		}
+		if(colors > 0) {
+			result.addColor(cmesh.getColor(cur));
+		}
+		if(normals > 0) {
+			result.addNormal(cmesh.getNormal(cur));
+		}
+		if(texcoords > 0) {
+			result.addTexCoord(cmesh.getTexCoord(cur));
+		}
+	}
+	return result;
+}
+
+
+
+ofMesh convertToIndices(const ofMesh& mesh);
+
+
+
+ofMesh convertToIndices(const ofMesh& mesh){	
+	ofMesh result;
+	ofMesh& cmesh = const_cast<ofMesh&>(mesh);
+	int vertices = mesh.getNumVertices();
+	int colors = mesh.getNumColors();
+	int normals = mesh.getNumNormals();
+	int texcoords = mesh.getNumTexCoords();
+	//int indices = mesh.getNumIndices();
+	
+	for (int i = 0; i < vertices; i++){
+		// check if this vertex already exists. 
+		//int who = isPointInVector(
+	}
+}
+
+int isPointInVector(ofPoint ptToSearchFor, vector < ofPoint > & pts){
+
+	int who = -1;
+	// use some small number?  epsilon?
+	for (int i = 0; i < pts.size(); i++){
+		float distance = (ptToSearchFor - pts[i]).length();
+		if (distance < 0.000001){
+			who = i;
+			break;
+		}
+	}
+	
+	return who;
+}
+

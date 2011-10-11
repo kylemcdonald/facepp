@@ -10,6 +10,12 @@
 #include "ofMain.h"
 
 
-// this for the odd thing that crept into testApp, cleaning up. 
+// this for the odd thing that crept into testApp, cleaning up.  
+
+// stuff that doesn't belong to a class, but is useful across the board. 
 
 string ZeroPadNumber(int num);
+
+ofMesh convertFromIndices(const ofMesh& mesh);
+ofMesh convertToIndices(const ofMesh& mesh);
+

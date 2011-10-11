@@ -13,7 +13,7 @@ void addForheadToFaceMesh(ofMesh & input){
 	
 	if (input.getVertices().size() != 66) return;
 	
-	static int forehead[10] = {0,17,18,19,20,/*21,22,*/23,24,25,26,16};
+	static int forehead[10] = {0,17,18,19,20,/*21,22,*/23,24,25,26,16};		// skipping 21 and 22 because there is a triangle that overlaps somehow
 	ofPoint extras[10];
 	ofVec2f texture[10];
 	
@@ -45,9 +45,4 @@ void addForheadToFaceMesh(ofMesh & input){
 		
 	}
 	
-	
-	
-	
-	//printf("-- %i \n", input.getVertices().size());
-	//std::exit(0);	
 }
