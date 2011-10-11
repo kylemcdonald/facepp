@@ -14,6 +14,8 @@
 
 void meanMeshRenderer::setup() {
 	
+	
+	// --------------------------------------------- get the still tracker into an FBO
 	stillTracker.setup();
 	stillTracker.setRescale(1.0);
 	stillTracker.setIterations(20);
@@ -26,8 +28,11 @@ void meanMeshRenderer::setup() {
 	// find the bounding box; 
 	meanMesh = stillTracker.getMeanObjectMesh();
 	
+	// ---------------------------------------------  we like foreheads
+	
 	addForheadToFaceMesh(meanMesh);	// forehead time!
 	
+	// --------------------------------------------- compute min max on the points, and figure out the w/h of this fbo
 	
 	ofPoint min, max;
 	for (int i = 0; i < meanMesh.getVertices().size(); i++){
@@ -54,10 +59,12 @@ void meanMeshRenderer::setup() {
 	
 	width = (max.x - min.x) * 10.0;
 	height = (max.y - min.y) * 10.0;
+	
+	// --------------------------------------------- draw the normal fbo
+	
 	meanMeshFbo.allocate(width, height, GL_RGBA, 4);
 	meanMeshFbo.begin();
 	ofClear(0,0,0,255);
-	
 	ofSetColor(255,255,255);
 	ofPushMatrix();
 	//ofTranslate(-min.x*5, -min.y*5, 0); //, -min.y, 0);
@@ -65,9 +72,9 @@ void meanMeshRenderer::setup() {
 	ofSetColor(255,127,0);
 	meanMesh.draw();
 	ofPopMatrix();
-	
 	meanMeshFbo.end();
 	
+	// --------------------------------------------- depth stuff
 	
 	pixelsDepth.allocate(width, height, OF_PIXELS_RGB);
 	depthImage.allocate(width, height, OF_IMAGE_COLOR);
@@ -87,16 +94,19 @@ void meanMeshRenderer::setup() {
 	meanMesh.draw();
 	ofPopMatrix();
 	stillDepth.getTextureReference().unbind();
-	
-	//depthImage.grabScreen(ofGetAppPtr()->mouseX, ofGetAppPtr()->mouseY, width, height);
-	
 	meanMeshAsDepthFbo.end();
+	
+	// --------------------------------------------- getting the dpeth pixels out for useful usage
+	
 	meanMeshAsDepthFbo.readToPixels(pixelsDepth, 0);
 	depthImage.setFromPixels(pixelsDepth);
 	ofxCv::blur(depthImage, 3);ofxCv::blur(depthImage, 3);
 	//ofxCv::blur(ofxCv::toCv(depthImage), 3);
 	depthImage.setImageType(OF_IMAGE_GRAYSCALE);
 	depthImage.update();
+	
+	// ---------------------------------------------	let's have out internal mesh match the FBO coodinates with textures
+	//													so it's easy to draw this to different points. 
 	
 	// now update the coords, 
 	for (int i = 0; i < meanMesh.getTexCoords().size(); i++){
@@ -106,18 +116,22 @@ void meanMeshRenderer::setup() {
 }
 
 
+
 void meanMeshRenderer::setupMPAMesh(){
+
+	// ---------------------------------------------  once mpa exists let's try to make a mesh internally with alot more points (for depth lookup)
+	
 	ofMesh temp = meanMesh;
 	for (int i = 0; i < temp.getVertices().size(); i++){
 		temp.getVertices()[i] *= 10;
 	}
-	//addForheadToFaceMesh(temp);
 	ofMesh nonindices = convertFromIndices(temp);
 	meanMeshThroughMPA = ((testApp*)ofGetAppPtr())->MPA.returnMeshWarpedToThisMesh(nonindices);
 }
 
 void meanMeshRenderer::clear(){
 	
+	// --------------------------------------------- this is some clearing and testing drawing somethign funky
 	meanMeshFbo.begin();
 	ofClear(0,0,0,0);
 	ofSetColor(255,255,255);
@@ -143,21 +157,15 @@ void meanMeshRenderer::draw(){
 
 void meanMeshRenderer::draw(ofxFaceTracker & tracker){
 	
+	// --------------------------------------------- draw this fbo to someone elses face, ie remap the position based on this tracker. 
 	
 	ofMesh target = tracker.getImageMesh();
 	addForheadToFaceMesh(target);
-	
-	
 	if (target.getVertices().size() != meanMesh.getVertices().size()) return;
-	
-	
 	ofMesh copy = meanMesh;
-	
-	
 	for (int i =0; i < copy.getVertices().size(); i++){
 		copy.getVertices()[i] = target.getVertices()[i];
 	}
-	
 	// copy vertices;
 	meanMeshFbo.getTextureReference().bind();
 	ofSetColor(255,255,255);

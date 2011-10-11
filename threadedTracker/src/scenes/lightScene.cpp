@@ -11,6 +11,8 @@
 #include "testApp.h"
 
 
+// --------------------------------------------- sorry this is a bit of a mess. 
+
 
 using namespace cv;
 
