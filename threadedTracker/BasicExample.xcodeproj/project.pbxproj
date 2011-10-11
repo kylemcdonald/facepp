@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		279AA89D144228CC008EBF56 /* threadedTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AA89B144228CC008EBF56 /* threadedTracker.cpp */; };
 		279AAAC2144228DC008EBF56 /* EdsExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB2144228DC008EBF56 /* EdsExamples.cpp */; };
 		279AAAC3144228DC008EBF56 /* EdsException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB4144228DC008EBF56 /* EdsException.cpp */; };
 		279AAAC4144228DC008EBF56 /* EdsStrings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB6144228DC008EBF56 /* EdsStrings.cpp */; };
@@ -54,8 +53,10 @@
 		92D1ABB4144330E300BB124A /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D1ABAE144330E300BB124A /* tinyxmlerror.cpp */; };
 		92D1ABB5144330E300BB124A /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D1ABAF144330E300BB124A /* tinyxmlparser.cpp */; };
 		92D1ABB6144330E300BB124A /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D1ABB1144330E300BB124A /* ofxXmlSettings.cpp */; };
+		92E445521444427600C7AE2B /* threadedTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E445501444427600C7AE2B /* threadedTracker.cpp */; };
 		92E71E781443BE74003984B7 /* expressionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E71E731443BE74003984B7 /* expressionManager.cpp */; };
 		92E71E791443BE74003984B7 /* meanMeshRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */; };
+		92E720B714440043003984B7 /* meshForeheadAdder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E720B614440043003984B7 /* meshForeheadAdder.cpp */; };
 		92EAE6B91443652E0087897A /* DPP.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92D1A8C414427E6200BB124A /* DPP.framework */; };
 		92EAE6BA1443652E0087897A /* EDSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92D1A8C514427E6200BB124A /* EDSDK.framework */; };
 		92EAE6E5144374BA0087897A /* useful.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EAE6E4144374BA0087897A /* useful.cpp */; };
@@ -131,8 +132,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		279AA89B144228CC008EBF56 /* threadedTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = threadedTracker.cpp; path = ../../../apps/facepp/SharedCode/threadedTracker.cpp; sourceTree = SOURCE_ROOT; };
-		279AA89C144228CC008EBF56 /* threadedTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = threadedTracker.h; path = ../../../apps/facepp/SharedCode/threadedTracker.h; sourceTree = SOURCE_ROOT; };
 		279AAAA5144228DC008EBF56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/.gitignore; sourceTree = SOURCE_ROOT; };
 		279AAAA8144228DC008EBF56 /* readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/readme; sourceTree = SOURCE_ROOT; };
 		279AAAAA144228DC008EBF56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxEdsdk/lib/EDSDK/Header/.gitignore; sourceTree = SOURCE_ROOT; };
@@ -305,10 +304,14 @@
 		92D1ABB1144330E300BB124A /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = SOURCE_ROOT; };
 		92D1ABB2144330E300BB124A /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		92D1ABD0144331CB00BB124A /* ofxAutoControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxAutoControlPanel.h; path = src/utils/ofxControlPanel/ofxAutoControlPanel.h; sourceTree = SOURCE_ROOT; };
+		92E445501444427600C7AE2B /* threadedTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = threadedTracker.cpp; sourceTree = "<group>"; };
+		92E445511444427600C7AE2B /* threadedTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threadedTracker.h; sourceTree = "<group>"; };
 		92E71E731443BE74003984B7 /* expressionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = expressionManager.cpp; path = src/analysis/expressionManager.cpp; sourceTree = SOURCE_ROOT; };
 		92E71E741443BE74003984B7 /* expressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expressionManager.h; path = src/analysis/expressionManager.h; sourceTree = SOURCE_ROOT; };
 		92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = meanMeshRenderer.cpp; path = src/rendering/meanMeshRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		92E71E771443BE74003984B7 /* meanMeshRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meanMeshRenderer.h; path = src/rendering/meanMeshRenderer.h; sourceTree = SOURCE_ROOT; };
+		92E720B514440043003984B7 /* meshForeheadAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = meshForeheadAdder.h; sourceTree = "<group>"; };
+		92E720B614440043003984B7 /* meshForeheadAdder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = meshForeheadAdder.cpp; sourceTree = "<group>"; };
 		92EAE6E3144374BA0087897A /* useful.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = useful.h; path = src/utils/useful.h; sourceTree = SOURCE_ROOT; };
 		92EAE6E4144374BA0087897A /* useful.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = useful.cpp; path = src/utils/useful.cpp; sourceTree = SOURCE_ROOT; };
 		92EAE6F9144375E30087897A /* inputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inputManager.h; path = src/input/inputManager.h; sourceTree = SOURCE_ROOT; };
@@ -368,7 +371,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* BasicExampleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicExampleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* BasicExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -413,16 +416,6 @@
 			);
 			name = ofxCv;
 			sourceTree = "<group>";
-		};
-		279AA89A144228CC008EBF56 /* SharedCode */ = {
-			isa = PBXGroup;
-			children = (
-				279AA89B144228CC008EBF56 /* threadedTracker.cpp */,
-				279AA89C144228CC008EBF56 /* threadedTracker.h */,
-			);
-			name = SharedCode;
-			path = ../../../apps/facepp/SharedCode;
-			sourceTree = SOURCE_ROOT;
 		};
 		279AA89E144228DB008EBF56 /* ofxEdsdk */ = {
 			isa = PBXGroup;
@@ -876,6 +869,16 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		92E4454F1444427600C7AE2B /* SharedCode */ = {
+			isa = PBXGroup;
+			children = (
+				92E445501444427600C7AE2B /* threadedTracker.cpp */,
+				92E445511444427600C7AE2B /* threadedTracker.h */,
+			);
+			name = SharedCode;
+			path = ../SharedCode;
+			sourceTree = SOURCE_ROOT;
+		};
 		92E71E721443BE74003984B7 /* analysis */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +894,8 @@
 			children = (
 				92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */,
 				92E71E771443BE74003984B7 /* meanMeshRenderer.h */,
+				92E720B514440043003984B7 /* meshForeheadAdder.h */,
+				92E720B614440043003984B7 /* meshForeheadAdder.cpp */,
 			);
 			name = rendering;
 			path = src/rendering;
@@ -1106,12 +1111,12 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				279AA89A144228CC008EBF56 /* SharedCode */,
+				92E4454F1444427600C7AE2B /* SharedCode */,
 				92EF52611442222600211B8B /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				E45BE5980E8CC70C009D7055 /* frameworks */,
-				E4B69B5B0A3A1756003C02F2 /* BasicExampleDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* BasicExample.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1145,7 +1150,7 @@
 			);
 			name = BasicExample;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* BasicExampleDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* BasicExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1231,7 +1236,6 @@
 				92EF52C01442227A00211B8B /* Expression.cpp in Sources */,
 				92EF52C11442227A00211B8B /* ExpressionClassifier.cpp in Sources */,
 				92EF52C21442227A00211B8B /* ofxFaceTracker.cpp in Sources */,
-				279AA89D144228CC008EBF56 /* threadedTracker.cpp in Sources */,
 				279AAAC2144228DC008EBF56 /* EdsExamples.cpp in Sources */,
 				279AAAC3144228DC008EBF56 /* EdsException.cpp in Sources */,
 				279AAAC4144228DC008EBF56 /* EdsStrings.cpp in Sources */,
@@ -1279,6 +1283,8 @@
 				92EAE6FB144375E30087897A /* inputManager.cpp in Sources */,
 				92E71E781443BE74003984B7 /* expressionManager.cpp in Sources */,
 				92E71E791443BE74003984B7 /* meanMeshRenderer.cpp in Sources */,
+				92E720B714440043003984B7 /* meshForeheadAdder.cpp in Sources */,
+				92E445521444427600C7AE2B /* threadedTracker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,10 +6,12 @@ using namespace ofxCv;
 void testApp::setup() {
 	
 	//ofSetVerticalSync(true);
-
+	
 	ofBackground(0,0,0);
 	
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
+	
+	
 	
 	
 	TT.setup();
@@ -20,7 +22,7 @@ void testApp::setup() {
 	panel.addSlider("camResize", "camResize", 0.5, 0.1, 1.0, false);
 		
 	
-	IM.setup();
+	trackingPixels.allocate(640,480, OF_PIXELS_RGB);
 	
 	tracker.setup();
 	tracker.setRescale(.25);
@@ -31,6 +33,8 @@ void testApp::setup() {
 	TT.start();
 	
 	MMR.setup();
+	
+	 IM.setup();
 	
 }
 
@@ -43,10 +47,17 @@ void testApp::update() {
 	IM.update();
 	if (IM.isFrameNew()){
 		TT.copyPixels(IM.getTrackingPixels());
+		if (TT.nFramesGotOne > 0){
+			trackingPixels.setFromExternalPixels(IM.getTrackingPixels(), 640, 480,3);
+			tracker.update(ofxCv::toCv(trackingPixels));
+			
+		}
+	} else {
+		
 	}
-	TT.copyFaceTracker(tracker);
+	//TT.copyFaceTracker(tracker);
 	
-	EM.update(tracker);
+	EM.update(tracker);	
 	
 	MMR.clear();
 
@@ -59,7 +70,7 @@ void testApp::draw() {
 	IM.draw();
 	
 	ofSetLineWidth(1);
-	//tracker.draw();
+	tracker.draw();
 	
 	ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
 	ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
@@ -74,12 +85,24 @@ void testApp::draw() {
 	EM.draw();
 	
 	//MMR.draw();
+	ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
 	MMR.draw(tracker);
+	ofDisableBlendMode();
+	
+	
+	
+	/*ofMesh temp = tracker.getImageMesh();
+	addForheadToFaceMesh(temp);
+	temp.drawWireframe(); //.draw();
+	*/
+	
+	
 }
 
 void testApp::keyPressed(int key) {
 	if(key == 'r') {
 		TT.setReset();
+		tracker.reset();
 		EM.classifier.reset();
 	}
 	if (key == ' '){
@@ -102,6 +125,6 @@ void testApp::keyPressed(int key) {
 
 void testApp::exit() {
 	TT.stop();
-	ofSleepMillis(20);
+	ofSleepMillis(50);
 }
 
