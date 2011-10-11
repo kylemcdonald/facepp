@@ -40,4 +40,6 @@ class inputManager  {
 	
 	bool isFrameNew(){return bFrameNew;};
 	
+	ofPixels smallAsOfPixels;
+	
 };

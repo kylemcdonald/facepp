@@ -10,7 +10,8 @@
 
 #include "ofxAutoControlPanel.h"
 #include "inputManager.h"
-
+#include "expressionManager.h"
+#include "meanMeshRenderer.h"
 
 class testApp : public ofBaseApp {
 public:
@@ -24,5 +25,11 @@ public:
 	threadedTracker TT;
 	ofxFaceTracker tracker;
 	ofxAutoControlPanel panel;
+	
+	expressionManager EM;
+	
+	meanMeshRenderer MMR;
+	
+	
 	
 };

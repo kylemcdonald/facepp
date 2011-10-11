@@ -24,10 +24,10 @@ void inputManager::setup() {
 	bSaveImages = false;	// for live input, for making a movie.
 	bFrameNew = false;
 	
-	inputType = webcam;
+	inputType = file;
 	
 	if (inputType == file){
-		video.loadMovie("faceMov.mov");
+		video.loadMovie("face.mov");
 		video.play();
 		float scale = 480.0 / (float)video.height;
 		pixelsSmaller.allocate(video.width*scale, video.height*scale, OF_IMAGE_COLOR);
@@ -41,6 +41,8 @@ void inputManager::setup() {
 
 	pixelsSmallerTex.allocate(640,480, GL_RGB);
 	pixelsToTrack = new unsigned char [640*480*3];
+	
+	smallAsOfPixels.allocate(640, 480, OF_PIXELS_RGB);
 	
 }
 
@@ -77,7 +79,8 @@ void inputManager::update() {
 			bFrameNew = true;
 		   if (bSaveImages == true){
 			   string fileName = ZeroPadNumber(count) + ".jpg";
-			   ofSaveImage(camera.getLivePixels(), fileName);
+			   smallAsOfPixels.setFromExternalPixels(pixelsToTrack, 640, 480, 3);
+			   ofSaveImage(	smallAsOfPixels	, fileName);
 			   count ++;
 		   }	
 		}		
