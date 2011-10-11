@@ -1,28 +1,28 @@
-#include "Particle.h"
+#include "NoiseParticle.h"
 
 vector<Force>
-	Particle::forces;
+	NoiseParticle::forces;
 	
-vector<Particle>
-	Particle::particles;
+vector<NoiseParticle>
+	NoiseParticle::particles;
 
 ofVec2f
-	Particle::centeringForce,
-	Particle::globalOffset,
-	Particle::externalForce;
+	NoiseParticle::centeringForce,
+	NoiseParticle::globalOffset,
+	NoiseParticle::externalForce;
 
 float
-	Particle::speed,
-	Particle::spread,
-	Particle::viscosity,
-	Particle::independence,
-	Particle::neighborhood,
-	Particle::confusion,
-	Particle::indecision,
-	Particle::age,
-	Particle::globalDirection;
+	NoiseParticle::speed,
+	NoiseParticle::spread,
+	NoiseParticle::viscosity,
+	NoiseParticle::independence,
+	NoiseParticle::neighborhood,
+	NoiseParticle::confusion,
+	NoiseParticle::indecision,
+	NoiseParticle::age,
+	NoiseParticle::globalDirection;
 
-void Particle::setup(int n, ofVec2f origin, float radius) {
+void NoiseParticle::setup(int n, ofVec2f origin, float radius) {
 	globalOffset.set(1. / 3, 2. / 3);
 	speed = 1;
   spread = 25;
@@ -35,11 +35,11 @@ void Particle::setup(int n, ofVec2f origin, float radius) {
 	globalDirection = 0;
 	
 	for(int i = 0; i < n; i++) {
-		Particle::particles.push_back(Particle(origin, radius));
+		NoiseParticle::particles.push_back(NoiseParticle(origin, radius));
 	}
 }
 
-void Particle::drawAllPoints() {
+void NoiseParticle::drawAllPoints() {
 	ofMesh mesh;
 	mesh.setMode(OF_PRIMITIVE_POINTS);
 	for(int i = 0; i < particles.size(); i++) {
@@ -48,7 +48,7 @@ void Particle::drawAllPoints() {
 	mesh.drawVertices();
 }
 
-void Particle::drawAllLines() {
+void NoiseParticle::drawAllLines() {
 	ofMesh mesh;
 	mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
 	for(int i = 0; i < particles.size(); i++) {
@@ -66,11 +66,11 @@ void Particle::drawAllLines() {
 	}
 }
 
-bool isInvisible(const Particle& p) {
+bool isInvisible(const NoiseParticle& p) {
 	return !p.visible;
 }
 
-void Particle::updateAll(float dt) {
+void NoiseParticle::updateAll(float dt) {
 	for(int i = 0; i < particles.size(); i++) {
 		particles[i].update(dt);
 	}
@@ -83,12 +83,12 @@ void Particle::updateAll(float dt) {
 	ofRemove(particles, isInvisible);
 }
 
-void Particle::setLeaving(bool leaving) {
+void NoiseParticle::setLeaving(bool leaving) {
 	for(int i = 0; i < particles.size(); i++) {
 		particles[i].leaving = leaving;
 	}
 }
 
-void Particle::addForce(ofVec2f position, float magnitude) {
+void NoiseParticle::addForce(ofVec2f position, float magnitude) {
 	forces.push_back(Force(position, magnitude));
 }

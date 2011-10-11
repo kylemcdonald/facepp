@@ -24,11 +24,11 @@ public:
 	}
 };
 
-class Particle {
+class NoiseParticle {
 public:
 	static ofVec2f centeringForce, globalOffset, externalForce;
 	static float speed, spread, viscosity, independence, rebirthRadius, neighborhood, confusion, indecision, age, globalDirection;
-	static vector<Particle> particles;
+	static vector<NoiseParticle> particles;
 	static vector<Force> forces;
 	static void setup(int n, ofVec2f radius, float radius);
   static void drawAllPoints();
@@ -41,7 +41,7 @@ public:
   ofVec2f position, velocity, force, localOffset;
 	list<ofVec2f> trail;
 	static const int maxTrailSize = 32;
-  Particle(ofVec2f origin, float radius) {
+  NoiseParticle(ofVec2f origin, float radius) {
     randomize(localOffset);
   	randomize(position);
   	position = position * radius + origin;
