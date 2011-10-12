@@ -13,6 +13,8 @@ void testApp::setup() {
 	
 	ofSetFrameRate(100);
 	
+	// for audio
+	ofxDaito::setup("oscsetting.xml");	
 	
 	TT.setup();
 	
@@ -165,9 +167,11 @@ void testApp::keyPressed(int key) {
 		
 		whoToDraw--;
 		if (whoToDraw < 0) whoToDraw += 4;
+		ofxDaito::bang("scene", whoToDraw);
 	} else if (key == OF_KEY_RIGHT){
 		whoToDraw++;
 		whoToDraw %= 4;
+		ofxDaito::bang("scene", whoToDraw);
 	}
 }
 
