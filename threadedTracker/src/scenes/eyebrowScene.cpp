@@ -121,7 +121,7 @@ void eyebrowScene::update(){
 							 ofMap(vel[i], 0., 20.,2.7, 9, true));
 				circles.push_back(circle);	
 				//printf(" here \n");
-				//ofxDaito::bang("crying", x);
+				ofxDaito::bang("crying", x);
 			}
 			
 			ptsPrevFrame[i].set(x,y);

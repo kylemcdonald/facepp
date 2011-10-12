@@ -19,6 +19,8 @@
 #include "ThirdEyeScene.h"
 #include "RibbonsScene.h"
 #include "eyebrowScene.h"
+#include "ofxDaito.h"
+
 
 #include "ofxCvColorImage.h"
 #include "ofxCvGrayscaleImage.h"

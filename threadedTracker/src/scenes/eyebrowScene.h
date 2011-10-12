@@ -14,6 +14,7 @@
 #include "ofxFaceTracker.h"
 #include "ofxBox2d.h"
 #include "box2dObj.h"
+#include "ofxDaito.h"
 
 class testApp;
 
