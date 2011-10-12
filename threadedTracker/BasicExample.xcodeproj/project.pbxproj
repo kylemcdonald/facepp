@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		273B057D1444E65400BA4CA3 /* NoiseParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273B05781444E65300BA4CA3 /* NoiseParticle.cpp */; };
-		273B057E1444E65400BA4CA3 /* Clone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273B057B1444E65300BA4CA3 /* Clone.cpp */; };
 		279AAAC2144228DC008EBF56 /* EdsExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB2144228DC008EBF56 /* EdsExamples.cpp */; };
 		279AAAC3144228DC008EBF56 /* EdsException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB4144228DC008EBF56 /* EdsException.cpp */; };
 		279AAAC4144228DC008EBF56 /* EdsStrings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279AAAB6144228DC008EBF56 /* EdsStrings.cpp */; };
@@ -64,6 +62,8 @@
 		92E447A61444947600C7AE2B /* lightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E447A41444947600C7AE2B /* lightScene.cpp */; };
 		92E447AC144494C800C7AE2B /* particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E447A8144494C800C7AE2B /* particle.cpp */; };
 		92E447AD144494C800C7AE2B /* spring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E447AA144494C800C7AE2B /* spring.cpp */; };
+		92E44A081445023B00C7AE2B /* NoiseParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E44A011445023B00C7AE2B /* NoiseParticle.cpp */; };
+		92E44A091445023B00C7AE2B /* Clone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E44A051445023B00C7AE2B /* Clone.cpp */; };
 		92E71E781443BE74003984B7 /* expressionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E71E731443BE74003984B7 /* expressionManager.cpp */; };
 		92E71E791443BE74003984B7 /* meanMeshRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */; };
 		92E720B714440043003984B7 /* meshForeheadAdder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E720B614440043003984B7 /* meshForeheadAdder.cpp */; };
@@ -93,7 +93,7 @@
 		92EF52C11442227A00211B8B /* ExpressionClassifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52B31442227A00211B8B /* ExpressionClassifier.cpp */; };
 		92EF52C21442227A00211B8B /* ofxFaceTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92EF52B51442227A00211B8B /* ofxFaceTracker.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
-		E4328149138ABC9F0047C5CB /* openFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworks.a */; };
+		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
 		E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9730E8CC7DD009D7055 /* AudioToolbox.framework */; };
@@ -142,12 +142,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		273B05781444E65300BA4CA3 /* NoiseParticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseParticle.cpp; sourceTree = "<group>"; };
-		273B05791444E65300BA4CA3 /* NoiseParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseParticle.h; sourceTree = "<group>"; };
-		273B057B1444E65300BA4CA3 /* Clone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Clone.cpp; path = /Users/kyle/Documents/openFrameworks/apps/facepp/SharedCode/ThirdEye/Clone.cpp; sourceTree = "<absolute>"; };
-		273B057C1444E65400BA4CA3 /* Clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Clone.h; path = /Users/kyle/Documents/openFrameworks/apps/facepp/SharedCode/ThirdEye/Clone.h; sourceTree = "<absolute>"; };
-		273B058A1444E86D00BA4CA3 /* ThirdEyeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThirdEyeScene.h; path = /Users/kyle/Documents/openFrameworks/apps/facepp/SharedCode/ThirdEye/ThirdEyeScene.h; sourceTree = "<absolute>"; };
-		273B05C31444EA7000BA4CA3 /* RibbonsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RibbonsScene.h; path = /Users/kyle/Documents/openFrameworks/apps/facepp/SharedCode/NoiseRibbons/RibbonsScene.h; sourceTree = "<absolute>"; };
 		279AAAA5144228DC008EBF56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/.gitignore; sourceTree = SOURCE_ROOT; };
 		279AAAA8144228DC008EBF56 /* readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/readme; sourceTree = SOURCE_ROOT; };
 		279AAAAA144228DC008EBF56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxEdsdk/lib/EDSDK/Header/.gitignore; sourceTree = SOURCE_ROOT; };
@@ -338,6 +332,12 @@
 		92E447A9144494C800C7AE2B /* particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = particle.h; sourceTree = "<group>"; };
 		92E447AA144494C800C7AE2B /* spring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spring.cpp; sourceTree = "<group>"; };
 		92E447AB144494C800C7AE2B /* spring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spring.h; sourceTree = "<group>"; };
+		92E44A011445023B00C7AE2B /* NoiseParticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseParticle.cpp; sourceTree = "<group>"; };
+		92E44A021445023B00C7AE2B /* NoiseParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseParticle.h; sourceTree = "<group>"; };
+		92E44A031445023B00C7AE2B /* RibbonsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RibbonsScene.h; sourceTree = "<group>"; };
+		92E44A051445023B00C7AE2B /* Clone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clone.cpp; sourceTree = "<group>"; };
+		92E44A061445023B00C7AE2B /* Clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clone.h; sourceTree = "<group>"; };
+		92E44A071445023B00C7AE2B /* ThirdEyeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdEyeScene.h; sourceTree = "<group>"; };
 		92E71E731443BE74003984B7 /* expressionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = expressionManager.cpp; path = src/analysis/expressionManager.cpp; sourceTree = SOURCE_ROOT; };
 		92E71E741443BE74003984B7 /* expressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expressionManager.h; path = src/analysis/expressionManager.h; sourceTree = SOURCE_ROOT; };
 		92E71E761443BE74003984B7 /* meanMeshRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = meanMeshRenderer.cpp; path = src/rendering/meanMeshRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -403,7 +403,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* BasicExampleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicExampleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* BasicExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -418,7 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
-				E4328149138ABC9F0047C5CB /* openFrameworks.a in Frameworks */,
+				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
@@ -440,28 +440,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		273B05771444E65300BA4CA3 /* Ribbons */ = {
-			isa = PBXGroup;
-			children = (
-				273B05781444E65300BA4CA3 /* NoiseParticle.cpp */,
-				273B05791444E65300BA4CA3 /* NoiseParticle.h */,
-				273B05C31444EA7000BA4CA3 /* RibbonsScene.h */,
-			);
-			name = Ribbons;
-			path = /Users/kyle/Documents/openFrameworks/apps/facepp/SharedCode/NoiseRibbons;
-			sourceTree = "<absolute>";
-		};
-		273B057A1444E65300BA4CA3 /* ThirdEye */ = {
-			isa = PBXGroup;
-			children = (
-				273B057B1444E65300BA4CA3 /* Clone.cpp */,
-				273B057C1444E65400BA4CA3 /* Clone.h */,
-				273B058A1444E86D00BA4CA3 /* ThirdEyeScene.h */,
-			);
-			name = ThirdEye;
-			path = /Users/kyle/Documents/openFrameworks/apps/facepp/SharedCode/ThirdEye;
-			sourceTree = "<absolute>";
-		};
 		278632B514421A020029784F /* ofxCv */ = {
 			isa = PBXGroup;
 			children = (
@@ -959,8 +937,8 @@
 		92E447A31444947600C7AE2B /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				273B05771444E65300BA4CA3 /* Ribbons */,
-				273B057A1444E65300BA4CA3 /* ThirdEye */,
+				92E44A001445023B00C7AE2B /* NoiseRibbons */,
+				92E44A041445023B00C7AE2B /* ThirdEye */,
 				92E447A7144494C800C7AE2B /* lightSp */,
 				92E447A41444947600C7AE2B /* lightScene.cpp */,
 				92E447A51444947600C7AE2B /* lightScene.h */,
@@ -978,6 +956,28 @@
 			);
 			path = lightSp;
 			sourceTree = "<group>";
+		};
+		92E44A001445023B00C7AE2B /* NoiseRibbons */ = {
+			isa = PBXGroup;
+			children = (
+				92E44A011445023B00C7AE2B /* NoiseParticle.cpp */,
+				92E44A021445023B00C7AE2B /* NoiseParticle.h */,
+				92E44A031445023B00C7AE2B /* RibbonsScene.h */,
+			);
+			name = NoiseRibbons;
+			path = ../SharedCode/NoiseRibbons;
+			sourceTree = SOURCE_ROOT;
+		};
+		92E44A041445023B00C7AE2B /* ThirdEye */ = {
+			isa = PBXGroup;
+			children = (
+				92E44A051445023B00C7AE2B /* Clone.cpp */,
+				92E44A061445023B00C7AE2B /* Clone.h */,
+				92E44A071445023B00C7AE2B /* ThirdEyeScene.h */,
+			);
+			name = ThirdEye;
+			path = ../SharedCode/ThirdEye;
+			sourceTree = SOURCE_ROOT;
 		};
 		92E71E721443BE74003984B7 /* analysis */ = {
 			isa = PBXGroup;
@@ -1198,7 +1198,7 @@
 		E4328144138ABC890047C5CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E4328148138ABC890047C5CB /* openFrameworks.a */,
+				E4328148138ABC890047C5CB /* openFrameworksDebug.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1220,7 +1220,7 @@
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				E45BE5980E8CC70C009D7055 /* frameworks */,
-				E4B69B5B0A3A1756003C02F2 /* BasicExampleDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* BasicExample.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1254,7 +1254,7 @@
 			);
 			name = BasicExample;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* BasicExampleDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* BasicExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1264,6 +1264,7 @@
 			isa = PBXProject;
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "BasicExample" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				English,
@@ -1288,10 +1289,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E4328148138ABC890047C5CB /* openFrameworks.a */ = {
+		E4328148138ABC890047C5CB /* openFrameworksDebug.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = openFrameworks.a;
+			path = openFrameworksDebug.a;
 			remoteRef = E4328147138ABC890047C5CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1396,8 +1397,8 @@
 				92E447A61444947600C7AE2B /* lightScene.cpp in Sources */,
 				92E447AC144494C800C7AE2B /* particle.cpp in Sources */,
 				92E447AD144494C800C7AE2B /* spring.cpp in Sources */,
-				273B057D1444E65400BA4CA3 /* NoiseParticle.cpp in Sources */,
-				273B057E1444E65400BA4CA3 /* Clone.cpp in Sources */,
+				92E44A081445023B00C7AE2B /* NoiseParticle.cpp in Sources */,
+				92E44A091445023B00C7AE2B /* Clone.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

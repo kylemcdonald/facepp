@@ -19,3 +19,4 @@ string ZeroPadNumber(int num);
 ofMesh convertFromIndices(const ofMesh& mesh);
 ofMesh convertToIndices(const ofMesh& mesh);
 
+ofPoint getCentroid2D( ofPolyline temp);

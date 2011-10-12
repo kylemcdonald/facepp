@@ -86,3 +86,17 @@ int isPointInVector(ofPoint ptToSearchFor, vector < ofPoint > & pts){
 	return who;
 }
 
+ofPoint getCentroid2D(ofPolyline  temp){
+	
+	vector < ofPoint > pts = temp.getVertices();
+	ofPoint midPt;
+	midPt.set(0,0,0);
+	for (int i = 0; i <pts.size(); i++){
+		midPt+= pts[i];
+	}
+	midPt /= MAX(1, pts.size());
+	return midPt;
+	
+}
+
+

@@ -39,7 +39,7 @@ void testApp::setup() {
 	TT.start();
 	
 	LS.setup();
-	TS.setup(1056, 704); // needs to match the input resolution
+	TS.setup(640,480); // needs to match the input resolution
 		
 }
 
@@ -70,7 +70,7 @@ void testApp::update() {
 	temp = tracker.getImageMesh();
 	LS.update(temp);
 	
-	//TS.update(tracker, canon.getLiveTexture());
+	TS.update(tracker, IM.img.getTextureReference());
 	//RS.update(true, // need to switch this for a detector based on thresholding the mouth openness
 	// tracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH).getCentroid2D());
 }
@@ -124,10 +124,12 @@ void testApp::draw() {
 //		
 //	}
 	
-	
+	ofDisableBlendMode();
+	ofDisableAlphaBlending();
+	ofSetColor(255,255,255);
 	// --------------------------------------------- the light scene
-	
-	LS.draw(640,480);
+	TS.draw();
+	//TS.draw(640,480);
 }
 
 void testApp::keyPressed(int key) {

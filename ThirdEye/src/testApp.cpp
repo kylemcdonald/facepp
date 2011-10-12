@@ -2,6 +2,23 @@
 
 using namespace ofxCv;
 
+
+
+ofPoint getCentroid2D(ofPolyline  temp){
+	
+	vector < ofPoint > pts = temp.getVertices();
+	ofPoint midPt;
+	midPt.set(0,0,0);
+	for (int i = 0; i <pts.size(); i++){
+		midPt+= pts[i];
+	}
+	midPt /= MAX(1, pts.size());
+	return midPt;
+	
+}
+
+
+
 void testApp::setup() {
 	ofSetVerticalSync(true);
 	
@@ -17,7 +34,7 @@ void testApp::setup() {
 	
 	thirdHeight = .15;
 	thirdMaskSize = .4;
-	thirdSize = .8;
+	thirdSize = 0.9;
 }
 
 void testApp::update() {
@@ -32,15 +49,17 @@ void testApp::update() {
 			
 			// third eye location is above the center of the line between the left and right eyebrows	
 			// and along a line from the mouth to this point, scaled by the length of that line
-			ofVec2f leftEyebrowCenter = tracker.getImageFeature(ofxFaceTracker::LEFT_EYEBROW).getCentroid2D();
-			ofVec2f rightEyebrowCenter = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYEBROW).getCentroid2D();
+			ofVec2f leftEyebrowCenter = getCentroid2D(tracker.getImageFeature(ofxFaceTracker::LEFT_EYEBROW));
+			ofVec2f rightEyebrowCenter = getCentroid2D(tracker.getImageFeature(ofxFaceTracker::RIGHT_EYEBROW));
 			ofVec2f thirdBase = (leftEyebrowCenter + rightEyebrowCenter) / 2;
-			ofVec2f mouthCenter = tracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH).getCentroid2D();
+			ofVec2f mouthCenter = getCentroid2D(tracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH));
 			ofVec2f thirdDirection = thirdBase - mouthCenter;
 			float thirdDistance = thirdDirection.length() * thirdHeight;
 			ofVec2f thirdPosition = thirdBase + thirdDirection.normalize() * thirdDistance;
-			ofVec2f leftEyeCenter = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE).getCentroid2D();
+			ofVec2f leftEyeCenter = getCentroid2D(tracker.getImageFeature(ofxFaceTracker::LEFT_EYE));
 			ofVec2f thirdOffset = thirdPosition - leftEyeCenter;
+			
+			thirdSize = 1.3 + sin(ofGetElapsedTimef()) * 0.4;
 			
 			ofPolyline eyeRing;
 			for(int i = 0; i < ringPoints; i++) {
@@ -63,6 +82,7 @@ void testApp::update() {
 			ofEndShape(true);
 			mask.end();
 			
+			
 			src.begin();
 			ofClear(0, 255);
 			ofTranslate(thirdPosition.x, thirdPosition.y);
@@ -71,7 +91,7 @@ void testApp::update() {
 			cam.draw(0, 0);
 			src.end();
 	
-			clone.setStrength(ofMap(mouseX, 0, ofGetWidth(), 0, 128, true));
+			clone.setStrength(ofMap(mouseX, 0, ofGetWidth(), 0, 500, true));
 			clone.update(src.getTextureReference(), cam.getTextureReference(), mask.getTextureReference());		
 		}
 	}

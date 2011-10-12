@@ -43,7 +43,7 @@ void inputManager::setup() {
 	pixelsToTrack = new unsigned char [640*480*3];
 	
 	smallAsOfPixels.allocate(640, 480, OF_PIXELS_RGB);
-	
+	img.allocate(640,480, OF_IMAGE_COLOR);
 }
 
 void inputManager::update() {
@@ -84,6 +84,10 @@ void inputManager::update() {
 			   count ++;
 		   }	
 		}		
+	}
+	
+	if (bFrameNew){
+		img.setFromPixels(pixelsToTrack, 640, 480, OF_IMAGE_COLOR);
 	}
 }
 

@@ -38,6 +38,8 @@ class inputManager  {
 	unsigned char * pixelsToTrack;		// 640x480;
 	ofTexture		pixelsSmallerTex;
 	
+	ofImage			img;
+	
 	bool isFrameNew(){return bFrameNew;};
 	
 	ofPixels smallAsOfPixels;
