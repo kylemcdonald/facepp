@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxDaito.h"
 
 inline void randomize(ofVec2f& v) {
 	v.x = ofRandomf();
@@ -100,6 +101,7 @@ public:
 			trail.pop_front();
 		}
 		ofRectangle screen(-ofGetWidth() / 2, -ofGetHeight() / 2, ofGetWidth(), ofGetHeight());
+	  
 		visible = true;
 		if(trail.size() > 2) {
 			visible = false;

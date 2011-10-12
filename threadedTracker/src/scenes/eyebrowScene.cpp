@@ -198,24 +198,27 @@ void eyebrowScene::draw(float w, float h){
 		}
 	}
 
-	for(int i=0; i<circles.size(); i++) {
+	if (circles.size() > 0) {
 		
-		int x = MIN(MAX(circles[i].getPosition().x, 0), 640-1);
-		int y = MIN(MAX(circles[i].getPosition().y, 0), 480-1);
-		
-		
-		int r = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3];
-		int g = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3 + 1];
-		int b = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3 + 2];
-		
-		circles[i].color.r = 0.95f * (float)circles[i].color.r  + 0.05f * (float)(0.75f * r + 0.25f * circles[i].color2.r);
-		circles[i].color.g = 0.95f * (float)circles[i].color.g  + 0.05f * (float)(0.75f * g + 0.25f * circles[i].color2.g);
-		circles[i].color.b = 0.95f * (float)circles[i].color.b  + 0.05f * (float)(0.75f * b + 0.25f * circles[i].color2.b);
-		
-		
-																  
-		circles[i].draw();
-		//cout << "drawing " << i << endl;
+		for(int i=0; i<circles.size(); i++) {
+			
+			int x = MIN(MAX(circles[i].getPosition().x, 0), 640-1);
+			int y = MIN(MAX(circles[i].getPosition().y, 0), 480-1);
+			
+			
+			int r = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3];
+			int g = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3 + 1];
+			int b = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3 + 2];
+			
+			circles[i].color.r = 0.95f * (float)circles[i].color.r  + 0.05f * (float)(0.75f * r + 0.25f * circles[i].color2.r);
+			circles[i].color.g = 0.95f * (float)circles[i].color.g  + 0.05f * (float)(0.75f * g + 0.25f * circles[i].color2.g);
+			circles[i].color.b = 0.95f * (float)circles[i].color.b  + 0.05f * (float)(0.75f * b + 0.25f * circles[i].color2.b);
+			
+			
+																	  
+			circles[i].draw();
+			//cout << "drawing " << i << endl;
+		}
 	}
 	
 	

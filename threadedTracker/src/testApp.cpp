@@ -195,6 +195,32 @@ void testApp::update() {
 		keyPressed(OF_KEY_RIGHT);
 		lastChange = ofGetElapsedTimef();
 	}
+	
+// for audio
+		ofxDaito::clearBundle();
+	
+	if(tracker.getFound()) {
+		ofxDaito::addMessage("/found", 1);
+		
+		ofVec2f position = tracker.getPosition();
+		ofxDaito::addMessage("/pose/position", position);
+		float scale = tracker.getScale();
+		ofxDaito::addMessage("/pose/scale", scale);
+		ofVec3f orientation = tracker.getOrientation();
+		ofxDaito::addMessage("/pose/orientation", orientation);
+		ofxDaito::addMessage("/gesture/mouth/width", tracker.getGesture(ofxFaceTracker::MOUTH_WIDTH));
+		ofxDaito::addMessage("/gesture/mouth/height", tracker.getGesture(ofxFaceTracker::MOUTH_HEIGHT));
+		ofxDaito::addMessage("/gesture/eyebrow/left", tracker.getGesture(ofxFaceTracker::LEFT_EYEBROW_HEIGHT));
+		ofxDaito::addMessage("/gesture/eyebrow/right", tracker.getGesture(ofxFaceTracker::RIGHT_EYEBROW_HEIGHT));
+		ofxDaito::addMessage("/gesture/eye/left", tracker.getGesture(ofxFaceTracker::LEFT_EYE_OPENNESS));
+		ofxDaito::addMessage("/gesture/eye/right", tracker.getGesture(ofxFaceTracker::RIGHT_EYE_OPENNESS));
+		ofxDaito::addMessage("/gesture/jaw", tracker.getGesture(ofxFaceTracker::JAW_OPENNESS));
+		ofxDaito::addMessage("/gesture/nostrils", tracker.getGesture(ofxFaceTracker::NOSTRIL_FLARE));
+	} else {
+		ofxDaito::addMessage("/found", 0);
+	}
+
+	ofxDaito::sendBundle();
 }
 
 void testApp::draw() {

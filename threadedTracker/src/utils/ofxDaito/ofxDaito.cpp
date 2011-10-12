@@ -2,6 +2,7 @@
 
 ofxXmlSettings ofxDaito::xml;
 vector<ofxOscSender> ofxDaito::senders;
+ofxOscBundle bundle;	
 
 void ofxDaito::send(ofxOscMessage& msg) {
 	for(int i = 0; i < senders.size(); i++) {
@@ -29,6 +30,52 @@ void ofxDaito::setup(string settings, bool verbose) {
 
 void ofxDaito::sendCustom(ofxOscMessage &msg){
 	send(msg);
+}
+
+
+void ofxDaito::clearBundle() {
+	bundle.clear();
+}
+
+template <>
+void ofxDaito::addMessage(string address, ofVec3f data) {
+	ofxOscMessage msg;
+	msg.setAddress(address);
+	msg.addFloatArg(data.x);
+	msg.addFloatArg(data.y);
+	msg.addFloatArg(data.z);
+	bundle.addMessage(msg);
+}
+
+template <>
+void ofxDaito::addMessage(string address, ofVec2f data) {
+	ofxOscMessage msg;
+	msg.setAddress(address);
+	msg.addFloatArg(data.x);
+	msg.addFloatArg(data.y);
+	bundle.addMessage(msg);
+}
+
+template <>
+void ofxDaito::addMessage(string address, float data) {
+	ofxOscMessage msg;
+	msg.setAddress(address);
+	msg.addFloatArg(data);
+	bundle.addMessage(msg);
+}
+
+template <>
+void ofxDaito::addMessage(string address, int data) {
+	ofxOscMessage msg;
+	msg.setAddress(address);
+	msg.addIntArg(data);
+	bundle.addMessage(msg);
+}
+
+void ofxDaito::sendBundle() {
+	for(int i = 0; i < senders.size(); i++) {
+		senders[i].sendBundle(bundle);
+	}
 }
 
 void ofxDaito::bang(string eventName,
@@ -61,11 +108,23 @@ void ofxDaito::bangVec3f(string eventName,
 	send(msg);
 }
 
+void ofxDaito::bangVec2f(string eventName,
+						 ofVec2f _vec
+						 ) {
+	ofxOscMessage msg;
+	msg.setAddress("/bang");
+	msg.addStringArg(eventName);
+	msg.addFloatArg(_vec.x);
+	msg.addFloatArg(_vec.y);
+	send(msg);
+}
+
 void ofxDaito::bang(string eventName, int _val){
 	ofxOscMessage msg;
 	msg.setAddress("/bang");
 	msg.addStringArg(eventName);
 	msg.addIntArg(_val);
-	cout << "sending"<< endl;
+//	cout << "sending"<< endl;
 	send(msg);
 }
+
