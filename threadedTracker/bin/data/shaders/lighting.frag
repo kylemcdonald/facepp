@@ -25,8 +25,8 @@ gl_FragColor = vec4(0.0,0.0,0.0,1.0);
    gl_FragColor += (gl_FrontLightModelProduct.sceneColor + Iamb + Idiff + Ispec) / 3.0;   
    
    }
-   gl_FragColor.x = pow(gl_FragColor.x, 2.0);
-   gl_FragColor.y = pow(gl_FragColor.y, 2.0);
-   gl_FragColor.z = pow(gl_FragColor.z, 2.0);
+   gl_FragColor.x = pow(gl_FragColor.x, 2.3);
+   gl_FragColor.y = pow(gl_FragColor.y, 2.3);
+   gl_FragColor.z = pow(gl_FragColor.z, 2.3);
   
 }

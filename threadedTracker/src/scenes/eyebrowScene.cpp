@@ -114,11 +114,11 @@ void eyebrowScene::update(){
 			int x = (int)tracker->getImagePoint(i).x;
 			int y = (int)tracker->getImagePoint(i).y;
 			vel[i] = ofDist(x, y,  ptsPrevFrame[i].x, ptsPrevFrame[i].y);
-			if (vel[i] > 1.0){			
+			if (vel[i] > 1.2){			
 				CustomCircle circle;
 				circle.setPhysics(3.0, 0.53, 0.1);
 				circle.setup(physics.getWorld(), tracker->getImagePoint(i).x, tracker->getImagePoint(i).y, 
-							 ofMap(vel[i], 0., 20.,3., 8, true));
+							 ofMap(vel[i], 0., 20.,2.7, 9, true));
 				circles.push_back(circle);	
 				//printf(" here \n");
 				//ofxDaito::bang("crying", x);
@@ -129,9 +129,23 @@ void eyebrowScene::update(){
 	}	
 	}
 	
-	if (circles.size()>200) {
-		clearParticles();
+	if (circles.size()>130) {
+	
+		
+			circles[0].destroyShape();
+			circles.erase(circles.begin());
+		
 	}
+	
+	if (ofGetFrameRate() < 24){
+		circles[0].destroyShape();
+		circles.erase(circles.begin());
+	}
+	
+	/*if (circles.size()>200) {
+		
+		clearParticles();
+	}*/
 
 	// erase circle
 	for(int i=circles.size()-1; i>=0; i--) {
@@ -185,6 +199,21 @@ void eyebrowScene::draw(float w, float h){
 	}
 
 	for(int i=0; i<circles.size(); i++) {
+		
+		int x = MIN(MAX(circles[i].getPosition().x, 0), 640-1);
+		int y = MIN(MAX(circles[i].getPosition().y, 0), 480-1);
+		
+		
+		int r = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3];
+		int g = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3 + 1];
+		int b = ((testApp*)ofGetAppPtr())->IM.getTrackingPixels()[ (y*640+x)*3 + 2];
+		
+		circles[i].color.r = 0.95f * (float)circles[i].color.r  + 0.05f * (float)(0.75f * r + 0.25f * circles[i].color2.r);
+		circles[i].color.g = 0.95f * (float)circles[i].color.g  + 0.05f * (float)(0.75f * g + 0.25f * circles[i].color2.g);
+		circles[i].color.b = 0.95f * (float)circles[i].color.b  + 0.05f * (float)(0.75f * b + 0.25f * circles[i].color2.b);
+		
+		
+																  
 		circles[i].draw();
 		//cout << "drawing " << i << endl;
 	}

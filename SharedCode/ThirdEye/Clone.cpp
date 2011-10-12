@@ -27,6 +27,7 @@ void main() {\
 
 char cloneShaderSource[] = 
 "uniform sampler2DRect src, srcBlur, dstBlur, mask;\
+uniform vec2 posForDarkness; \
 void main() {\
 	vec2 pos = gl_TexCoord[0].st;	\
 	vec4 maskVal = texture2DRect(mask, pos);\
@@ -35,7 +36,12 @@ void main() {\
 		vec3 srcColor = texture2DRect(src, pos).rgb;\
 		vec4 dstColorBlur = texture2DRect(dstBlur, pos);\
 		vec3 offset = (dstColorBlur.rgb - srcColorBlur.rgb);\
-		/*offset.rgb /= (1.0 + maskVal.r);   darker !! */ \									
+		float dist = distance(posForDarkness,gl_FragCoord.xy);\
+		float pct =  ( dist / 30.0);\
+		if (pct > 1.0) pct = 1.0;\
+		if (pct < 0.0) pct = 0.0;\
+		pct = 1.0 - pct;\
+		offset.rgb = (1.0-pct) * offset.rgb + (pct)*(offset.rgb / (1.0 + maskVal.r));\									
 		gl_FragColor = vec4(srcColor + offset, 1.);\
 	} else {\
 		gl_FragColor = vec4(0.);\
@@ -89,7 +95,7 @@ void Clone::setStrength(int strength) {
 	this->strength = strength;
 }
 
-void Clone::update(ofTexture& src, ofTexture& dst, ofTexture& mask) {
+void Clone::update(ofTexture& src, ofTexture& dst, ofTexture & dst2, float s, ofTexture& mask) {
 	maskedBlur(src, mask, srcBlur);
 	maskedBlur(dst, mask, dstBlur);
 	
@@ -97,12 +103,18 @@ void Clone::update(ofTexture& src, ofTexture& dst, ofTexture& mask) {
 	ofPushStyle();
 	ofEnableAlphaBlending();
 	ofSetColor(255,255,255);
+	
+	dst2.draw(0,0);
+	ofSetColor(255,255,255, s*255);
 	dst.draw(0, 0);	
+	
+	
 	cloneShader.begin();
 	cloneShader.setUniformTexture("src", src, 1);
 	cloneShader.setUniformTexture("srcBlur", srcBlur, 2);
 	cloneShader.setUniformTexture("dstBlur", dstBlur, 3);
 	cloneShader.setUniformTexture("mask", mask, 4);
+	cloneShader.setUniform2f("posForDarkness", darkPoint.x, darkPoint.y);
 	
 	
 	ofSetColor(255,255,255);

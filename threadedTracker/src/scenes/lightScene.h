@@ -16,20 +16,43 @@
 #include "particle.h"
 
 
-class  trianglez{
+class spinningLight {
 	
 public: 
+	void setup();
+	void update();
+	void draw();
+	void applyLights();
 	
+	ofPoint		centerPoint;
+	ofPoint		cosVal;
+	ofPoint		sinVal;	// to do rotation. 
+	ofLight		light;
+	float		energy;
+	ofPoint		position; 
+	ofPoint		color;
+	
+	float		angleChange;
+	float direction;
+	
+	float sinSpeed;
+	float cosSpeed;
+	
+	float randomOffset;
+	
+};
+
+
+class  trianglez{
+public: 
 	void set(ofPoint pt1, ofPoint pt2, ofPoint pt3){
 		pta = pt1;
 		ptb = pt2;
 		ptc = pt3;
-		
 	}
 	ofPoint pta;
 	ofPoint ptb;
 	ofPoint ptc;
-	
 } ;
 
 
@@ -50,11 +73,14 @@ public:
 	void draw(float width, float height);	// for the FBO
 	
 	ofShader shader;
-	ofLight light;
-	ofLight lightBlue;
-	ofLight lightGreen;
+	
+	vector < spinningLight > lights;
 	
 	ofPoint ptSmoot;
-	ofPoint lights[3];
+	ofPoint ptSmootLastFrame;
+	float speedMoving;
+	
+	void drawTriangleFake ( trianglez temp, trianglez fromDepth);	// draw a triangle into the newMesh
+	ofMesh newMesh;
 	
 };

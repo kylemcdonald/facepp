@@ -13,7 +13,7 @@ public:
 		if(mouthIsOpen) {
 			NoiseParticle::setLeaving(true);
 			NoiseParticle::setup(10, ofVec2f(mouthPosition.x - ofGetWidth() / 2, mouthPosition.y - ofGetHeight() / 2), 1);
-			NoiseParticle::addForce(ofVec2f(mouthPosition.x - ofGetWidth() / 2, mouthPosition.y - ofGetHeight() / 2), 10);
+			NoiseParticle::addForce(ofVec2f(mouthPosition.x - ofGetWidth() / 2, mouthPosition.y - ofGetHeight() / 2), 3);
 		}
 		NoiseParticle::updateAll(60 * ofGetLastFrameTime());
 	}

@@ -9,6 +9,8 @@ public:
 	Clone clone;
 	ofFbo mask, src;
 	float thirdHeight, thirdMaskSize, thirdSize, strength;
+	ofTexture * texy;
+	float cyclopsEnergy;
 	
 	void setup(int width, int height) {
 		
@@ -21,13 +23,25 @@ public:
 		mask.allocate(settings);
 		src.allocate(settings);
 		
-		thirdHeight = .15;
+		thirdHeight = -0.08;
 		thirdMaskSize = .4;
 		thirdSize = .8;
 		strength = 100;
+		
+		cyclopsEnergy = 0;
 	}
 	
 	void update(ofxFaceTracker& tracker, ofTexture& cam) {
+		
+		
+		if (tracker.getFound()){
+			cyclopsEnergy = 0.99f * cyclopsEnergy + 0.01f * 1.0;
+		} else {
+			cyclopsEnergy = 0.85f * cyclopsEnergy + 0.15f * 0.0;
+		}	
+		
+		
+		
 		int inner[] = {36, 36, 37, 37, 38, 38, 39, 39, 39, 39, 40, 40, 40, 41, 41, 36};
 		int outer[] = { 0, 17, 17, 18, 18, 19, 20, 20, 21, 27, 28, 29,  2,  2,  1,  1};
 		int ringPoints = 16;
@@ -44,7 +58,7 @@ public:
 		ofVec2f leftEyeCenter = getCentroid2D(tracker.getImageFeature(ofxFaceTracker::LEFT_EYE));
 		ofVec2f thirdOffset = thirdPosition - leftEyeCenter;
 		
-		thirdSize = 1.3 + sin(ofGetElapsedTimef()) * 0.4;
+		thirdSize = 2.9;
 		
 		ofPolyline eyeRing;
 		for(int i = 0; i < ringPoints; i++) {
@@ -78,9 +92,9 @@ public:
 		ofSetColor(255,255,255);
 		cam.draw(0, 0);
 		src.end();
-		
-		clone.setStrength(ofMap(ofGetAppPtr()->mouseX, 0, ofGetWidth(), 0, 500, true));
-		clone.update(src.getTextureReference(), cam, mask.getTextureReference());		
+		clone.darkPoint = thirdPosition;
+		clone.setStrength(cyclopsEnergy*180);
+		clone.update(src.getTextureReference(), *texy, cam, cyclopsEnergy, mask.getTextureReference());		
 	}
 	
 	void draw()  {

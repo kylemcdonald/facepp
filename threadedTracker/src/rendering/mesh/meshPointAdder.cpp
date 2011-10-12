@@ -213,7 +213,7 @@ void meshPointAdder::calcluateTriangulation(){
 	char opts[100];
 	double fAcrit = 0.2;
 	
-	sprintf (opts, "pqa500zV");		// <------ magic happens here ! 
+	sprintf (opts, "pqa500z");		// <------ magic happens here ! 
 	//sprintf (opts, "pq36z");		// <------ magic happens here ! 
 	
 	triangulate(opts, &in, &out, NULL);

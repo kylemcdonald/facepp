@@ -31,6 +31,7 @@ public:
 		color.r = ofRandom(155);
 		color.b = ofRandom(255); 
 		color.g = ofRandom(255); 
+		color2 = color;
 	} 
 	
 	void update(){
@@ -42,12 +43,13 @@ public:
 	}
 	
 	ofColor color;
+	ofColor color2;
 	void draw() {
 		radius = getRadius();
 		
 		glPushMatrix();
 		glTranslatef(getPosition().x, getPosition().y, 0);
-		
+		ofEnableAlphaBlending();
 		ofSetColor(color.r, color.g, color.b);
 //		ofNoFill();
 		ofFill();

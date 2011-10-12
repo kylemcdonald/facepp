@@ -20,6 +20,10 @@
 #include "RibbonsScene.h"
 #include "eyebrowScene.h"
 
+#include "ofxCvColorImage.h"
+#include "ofxCvGrayscaleImage.h"
+
+
 class testApp : public ofBaseApp {
 public:
 	void setup();
@@ -45,4 +49,11 @@ public:
 	eyebrowScene ES;
 	
 	int whoToDraw;
+	
+	ofxCvColorImage colorImg;
+	ofxCvGrayscaleImage maskArea;
+	ofImage colorImg2;
+	
+	float lastChange;
+	
 };

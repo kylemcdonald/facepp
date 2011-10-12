@@ -27,8 +27,8 @@ void NoiseParticle::setup(int n, ofVec2f origin, float radius) {
 	speed = 1;
   spread = 25;
   viscosity = .1;
-  independence = 1;
-  neighborhood = 100;
+  independence = 0.7;
+  neighborhood = 200;
 	confusion = .01;
 	indecision = .01;
 	age = 0;
@@ -56,18 +56,18 @@ void NoiseParticle::drawAllLines() {
 		list<ofVec2f>& trail = particles[i].trail;
 		int size = trail.size();
 		list<ofVec2f>::iterator it;
-		int i = 0;
+		int j = 0;	// wow, crazy bug
 		for(it = trail.begin(); it != trail.end(); it++) {
 			mesh.addVertex(*it);
-			mesh.addColor(ofFloatColor(1., (float) i / size));
-			i++;
+			mesh.addColor(ofFloatColor(1.*0.3, ((float) j / size) * particles[i].energy));
+			j++;
 		}
 		mesh.draw();
 	}
 }
 
 bool isInvisible(const NoiseParticle& p) {
-	return !p.visible;
+	return !p.visible || p.energy < 0.001;
 }
 
 void NoiseParticle::updateAll(float dt) {

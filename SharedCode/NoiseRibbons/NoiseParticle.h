@@ -41,11 +41,14 @@ public:
   ofVec2f position, velocity, force, localOffset;
 	list<ofVec2f> trail;
 	static const int maxTrailSize = 32;
+	float energy;
+	
   NoiseParticle(ofVec2f origin, float radius) {
     randomize(localOffset);
   	randomize(position);
   	position = position * radius + origin;
 		leaving = false;
+	  energy = 1.0;
   }
   inline void applyFlockingForce() {
 		float basex = position.x / neighborhood;
@@ -82,6 +85,8 @@ public:
 	inline void applyLeavingForce() {
 	}
   inline void update(float dt) {
+	  
+	  energy *= 0.97f;
     force.set(0, 0);
     applyFlockingForce();
     applyViscosityForce();
