@@ -21,48 +21,13 @@ float energy;
 
 void lightScene::setup(){
 	
-	//cout << "-----------" << endl;
-	
-	shader.load("shaders/lighting.vert", "shaders/lighting.frag");
-	//cout << "-----------" << endl;
-	
+	shader.load("shaders/lighting.vert", "shaders/lighting.frag");	
 	light.enable();	
 	lightBlue.enable();
 	lightGreen.enable();
 	
-	
 	energy = 0;
-	
-	
-	
-	for (int i = 0; i < 4; i++){
-		particle myParticle;
-		myParticle.setInitialCondition(ofRandom(500,550),ofRandom(500,550),0,0);
-		particles.push_back(myParticle);
-	}
-	
-	particles[0].bFixed = true;
-	
-	for (int i = 1; i < particles.size(); i++){
-		spring mySpring;
-		mySpring.distance		= 100;
-		mySpring.springiness	= 0.2f;
-		mySpring.particleA = & (particles[0  ]);
-		mySpring.particleB = & (particles[i]);
-		springs.push_back(mySpring);
-	}
-	
-	
-	tempA.setInitialCondition(200,200,0,0);
-	tempB.setInitialCondition(200,200,0,0);
-	tempA.damping = 0.01;
-	tempB.damping = 0.01;
-	mouseSpring.particleA = &tempA;
-	mouseSpring.particleB = &tempB;
-	mouseSpring.distance = 1;
-	mouseSpring.springiness = 0.3;
-		
-	
+
 }
 
 void lightScene::update(ofMesh & faceMesh){
@@ -81,44 +46,6 @@ void lightScene::update(ofMesh & faceMesh){
 	ofVec3f orientation = ((testApp*)ofGetAppPtr())->tracker.getOrientation();
 	ofPoint posT = pos;
 	posT += orientation * 400;
-	
-	tempA.setInitialCondition(pos.x, pos.y, 0,0);
-	tempB.resetForce();
-	mouseSpring.update();
-	tempB.addDampingForce();
-	tempB.update();
-	
-	particles[0].setInitialCondition(tempB.pos.x, tempB.pos.y, 0,0);
-	
-	
-	//ofVec2f pos = TM->FT.getPosition();
-	//particles[0].setInitialCondition(pos.x, pos.y, 0, 0);
-	
-	
-	for (int i = 0; i < particles.size(); i++){
-		particles[i].resetForce();
-	}
-	
-	for (int i = 0; i < particles.size(); i++){
-		
-		//particles[i].addRepulsionForce(mouseX, mouseY, 200, 0.7f);
-		
-		for (int j = 0; j < i; j++){
-			particles[i].addRepulsionForce(particles[j], 400, 0.06);
-		}
-	}
-	
-	for (int i = 0; i < springs.size(); i++){
-		springs[i].update();
-	}
-	
-	
-	for (int i = 0; i < particles.size(); i++){
-		particles[i].addDampingForce();
-		particles[i].update();
-	}
-	
-	
 	
 	
 	
@@ -226,79 +153,42 @@ void lightScene::drawTriangle ( trianglez temp, trianglez d){
 
 void lightScene::draw(float w, float h){
 	
-	
-	
-	
-//ofPoint extras[12];
-//	ofPoint extrasUp[12];
-//	
-//	extras[0] = TM->asmPtsSmoothed[0];
-//	extras[1] = TM->asmPtsSmoothed[17];
-//	extras[2] = TM->asmPtsSmoothed[18];
-//	extras[3] = TM->asmPtsSmoothed[19];
-//	extras[4] = TM->asmPtsSmoothed[20];
-//	extras[5] = TM->asmPtsSmoothed[21];
-//	extras[6] = TM->asmPtsSmoothed[22];
-//	extras[7] = TM->asmPtsSmoothed[23];
-//	extras[8] = TM->asmPtsSmoothed[24];
-//	extras[9] = TM->asmPtsSmoothed[25];
-//	extras[10] = TM->asmPtsSmoothed[26];
-//	extras[11] = TM->asmPtsSmoothed[16];
-//	
-//	for (int i = 0; i < 12; i++){
-//		extrasUp[i] = extras[i];
-//		extrasUp[i] += (TM->asmPtsSmoothed[27] - TM->asmPtsSmoothed[33]) ;
-//	}
+
 
 	
 	glPushMatrix();
-	
-	//glScalef(w / 640.0f, h / 480.0f, 1.0);
-	
-	
-	//ofPoint light = ofPoint( ofMap(((testApp*)ofGetAppPtr())->mouseX, 0, ofGetWidth(), -13000, 13000),ofMap(((testApp*)ofGetAppPtr())->mouseY, 0, ofGetHeight(), -13000, 13000), 1000 * sin(ofGetElapsedTimef()));
-	
-	//light.normalize();
-	
-		ofEnableLighting();
-		glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);	
-	//	
-		//ofPoint lightpos = ofPoint( ofMap(((testApp*)ofGetAppPtr())->mouseX, 0, ofGetWidth(), -13000, 13000),ofMap(((testApp*)ofGetAppPtr())->mouseY, 0, ofGetHeight(), -13000, 13000), 100);
-	//	
-	//	
-	//	light.setPosition(lightpos.x, lightpos.y, lightpos.z);
-	//	
-	
+	ofEnableLighting();
+	//glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);	
 	ofVec2f pos = ((testApp*)ofGetAppPtr())->tracker.getPosition();
 	ofVec3f orientation =  ((testApp*)ofGetAppPtr())->tracker.getOrientation();
 	ofPoint posT = pos;
 	posT += orientation * 400;
 	
+	ptSmoot = 0.97f * ptSmoot + 0.03f * pos;
 	
-	float speed = particles[1].vel.length() / (((testApp*)ofGetAppPtr())->mouseY/30.0 + 1.0);
-	if (speed > 1) speed = 1;
-	light.setPosition(particles[1].pos.x, particles[1].pos.y, 200);
-	light.setDiffuseColor(ofColor(255*1, 0, 0));
-	speed = particles[2].vel.length() / (((testApp*)ofGetAppPtr())->mouseY/30.0 + 1.0);
-	if (speed > 1) speed = 1;
-	lightGreen.setPosition(particles[2].pos.x, particles[2].pos.y, 200);
-	lightGreen.setDiffuseColor(ofColor(0,255*1, 0));
-	speed = particles[3].vel.length() / (((testApp*)ofGetAppPtr())->mouseY/30.0 + 1.0);
-	if (speed > 1) speed = 1;
-	lightBlue.setPosition(particles[3].pos.x, particles[3].pos.y, 200);
-	lightBlue.setDiffuseColor(ofColor(0,0,1*255));
+	light.setPosition(ptSmoot.x + 200 * cos(ofGetElapsedTimef()*4), ptSmoot.y , 0 + 200 * sin(ofGetElapsedTimef()*4));
+	light.setDiffuseColor(ofColor(255*0.6, 255*0.6, 0));
 	
-	//lightBlue.setPosition(particles[2].pos.x, particles[2].pos.y, 500);
-
-
-	ofSeedRandom(0);
+	lightGreen.setPosition(ptSmoot.x + 200 * cos(ofGetElapsedTimef()*3), ptSmoot.y , 0 + 200 * sin(ofGetElapsedTimef()*3));
+	lightGreen.setDiffuseColor(ofColor(0,255*0.6, 255*0.6));
+	
+	lightBlue.setPosition(ptSmoot.x, ptSmoot.y + 200 * cos(ofGetElapsedTimef()*2), 0 + 200 * sin(ofGetElapsedTimef()*3));
+	lightBlue.setDiffuseColor(ofColor(255*0.6,0,0.6*255));
+	
+	lights[0].set(ptSmoot.x + 200 * cos(ofGetElapsedTimef()*4), ptSmoot.y , 0 + 200 * sin(ofGetElapsedTimef()*4));
+	lights[1].set(ptSmoot.x + 200 * cos(ofGetElapsedTimef()*3), ptSmoot.y , 0 + 200 * sin(ofGetElapsedTimef()*3));
+	lights[2].set(ptSmoot.x, ptSmoot.y + 200 * cos(ofGetElapsedTimef()*2), 0 + 200 * sin(ofGetElapsedTimef()*3));
+	
+	
+	
+	
+	//ofSeedRandom(0);
 	if (((testApp*)ofGetAppPtr())->tracker.getImageMesh().getVertices().size() > 0){
 		
 		ofMesh currentMesh = ((testApp*)ofGetAppPtr())->tracker.getImageMesh();
 		addForheadToFaceMesh(currentMesh);
 		ofMesh forUsage = convertFromIndices(currentMesh);
 		ofMesh temp = ((testApp*)ofGetAppPtr())->MPA.returnMeshWarpedToThisMesh(forUsage);
-		//temp.drawWireframe();
 		ofEnableAlphaBlending();
 		ofFill();
 		
@@ -306,7 +196,7 @@ void lightScene::draw(float w, float h){
 		trianglez d;
 		vector <ofPoint> & verticesMMR = ((testApp*)ofGetAppPtr())->MMR.meanMeshThroughMPA.getVertices();
 		
-		ofEnableBlendMode(OF_BLENDMODE_SCREEN);
+		ofEnableBlendMode(OF_BLENDMODE_ADD);
 		for (int i = 0; i < temp.getVertices().size()/3; i++){
 			t.set(temp.getVertices()[i*3],
 				   temp.getVertices()[i*3+1],
@@ -314,31 +204,29 @@ void lightScene::draw(float w, float h){
 			d.set(verticesMMR[i*3],
 				  verticesMMR[i*3+1],
 				  verticesMMR[i*3+2]);
-			//ofSetColor(ofRandom(0,255), ofRandom(0,255), ofRandom(0,255), 70 );
-			//ofTriangle(temp.getVertices()[i*3],
-			//		   temp.getVertices()[i*3+1],
-			//		   temp.getVertices()[i*3+2]);
 			drawTriangle(t,d);
-			
 		}
 		ofDisableBlendMode();
 	}
 	
 	
+	glPopMatrix();
+
 	
 	ofDisableLighting();
-ofSetColor(255,255,255);
-	//for (int i = 0; i < particles.size(); i++){
-//		particles[i].draw();
-//	}
-//	
-//	for (int i = 0; i < springs.size(); i++){
-//		springs[i].draw();
-//	}
+	ofSetColor(255,255,255);
+
 	
+	for (int i = 0; i < 3; i++){
+		ofPushMatrix();
+		if (lights[i].z > 0){
+			ofTranslate(lights[i].x, lights[i].y, lights[i].z);
+			ofSphere(0, 0, 0, 3);
+		}
+		ofPopMatrix();
+	}
 	
-	glPopMatrix();
-	
+		
 }
 
 

@@ -54,12 +54,7 @@ public:
 	ofLight lightBlue;
 	ofLight lightGreen;
 	
-	vector <particle> particles;
-	vector <spring> springs;
-	
-	spring mouseSpring;
-	particle tempA;
-	particle tempB;
-
+	ofPoint ptSmoot;
+	ofPoint lights[3];
 	
 };

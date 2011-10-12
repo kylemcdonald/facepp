@@ -24,7 +24,7 @@ void inputManager::setup() {
 	bSaveImages = false;	// for live input, for making a movie.
 	bFrameNew = false;
 	
-	inputType = file;
+	inputType = edsdk;
 	
 	if (inputType == file){
 		video.loadMovie("face3.mov");

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Particle.h"
+#include "NoiseParticle.h"
 
 class testApp : public ofBaseApp {
 public:

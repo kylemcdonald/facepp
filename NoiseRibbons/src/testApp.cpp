@@ -6,11 +6,11 @@ void testApp::setup() {
 
 void testApp::update() {
 	if(ofGetMousePressed()) {
-		Particle::setLeaving(true);
-		Particle::setup(10, ofVec2f(mouseX - ofGetWidth() / 2, mouseY - ofGetHeight() / 2), 1);
-		Particle::addForce(ofVec2f(mouseX - ofGetWidth() / 2, mouseY - ofGetHeight() / 2), 10);
+		NoiseParticle::setLeaving(true);
+		NoiseParticle::setup(10, ofVec2f(mouseX - ofGetWidth() / 2, mouseY - ofGetHeight() / 2), 1);
+		NoiseParticle::addForce(ofVec2f(mouseX - ofGetWidth() / 2, mouseY - ofGetHeight() / 2), 10);
 	}
-	Particle::updateAll(60 * ofGetLastFrameTime());
+	NoiseParticle::updateAll(60 * ofGetLastFrameTime());
 }
 
 void testApp::draw() {
@@ -22,7 +22,7 @@ void testApp::draw() {
 	ofEnableSmoothing();
 	ofEnableBlendMode(OF_BLENDMODE_ADD);
 	ofSetLineWidth(4);
-	Particle::drawAllLines();
+	NoiseParticle::drawAllLines();
 	ofPopMatrix();
 	
 	ofSetColor(0);

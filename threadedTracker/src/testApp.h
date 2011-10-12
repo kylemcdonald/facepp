@@ -18,6 +18,7 @@
 #include "lightScene.h"
 #include "ThirdEyeScene.h"
 #include "RibbonsScene.h"
+#include "eyebrowScene.h"
 
 class testApp : public ofBaseApp {
 public:
@@ -41,4 +42,7 @@ public:
 	lightScene LS;
 	ThirdEyeScene TS;
 	RibbonsScene RS;
+	eyebrowScene ES;
+	
+	int whoToDraw;
 };

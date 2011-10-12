@@ -11,7 +11,7 @@ void testApp::setup() {
 	
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
 	
-	
+	ofSetFrameRate(100);
 	
 	
 	TT.setup();
@@ -37,9 +37,12 @@ void testApp::setup() {
 	
 	EM.setup();
 	TT.start();
-	
+	ES.setup();
+	ES.tracker = &tracker;
 	LS.setup();
 	TS.setup(640,480); // needs to match the input resolution
+	
+	whoToDraw = 0;
 		
 }
 
@@ -69,8 +72,9 @@ void testApp::update() {
 	ofMesh temp;
 	temp = tracker.getImageMesh();
 	LS.update(temp);
-	
 	TS.update(tracker, IM.img.getTextureReference());
+	ES.update();
+	RS.update(mouseY > 300 ? true : false, getCentroid2D(tracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH)));
 	//RS.update(true, // need to switch this for a detector based on thresholding the mouth openness
 	// tracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH).getCentroid2D());
 }
@@ -128,8 +132,10 @@ void testApp::draw() {
 	ofDisableAlphaBlending();
 	ofSetColor(255,255,255);
 	// --------------------------------------------- the light scene
-	TS.draw();
-	//TS.draw(640,480);
+	if (whoToDraw == 0) TS.draw();
+	if (whoToDraw == 1) RS.draw();
+	if (whoToDraw == 2) ES.draw(640,480);
+	if (whoToDraw == 3) LS.draw(640,480);
 }
 
 void testApp::keyPressed(int key) {
@@ -153,6 +159,15 @@ void testApp::keyPressed(int key) {
 	}
 	if(key == 'l') {
 		EM.loadData = true;
+	}
+	
+	if (key == OF_KEY_LEFT){
+		
+		whoToDraw--;
+		if (whoToDraw < 0) whoToDraw += 4;
+	} else if (key == OF_KEY_RIGHT){
+		whoToDraw++;
+		whoToDraw %= 4;
 	}
 }
 
