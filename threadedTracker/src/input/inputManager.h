@@ -4,7 +4,7 @@
 
 #include "ofMain.h"
 #include "ofxEdsdk.h"
-	
+#include "ofxXmlSettings.h"
 	
 class inputManager  {
 	
@@ -43,5 +43,7 @@ class inputManager  {
 	bool isFrameNew(){return bFrameNew;};
 	
 	ofPixels smallAsOfPixels;
+	
+	
 	
 };

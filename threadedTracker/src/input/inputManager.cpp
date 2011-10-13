@@ -24,7 +24,20 @@ void inputManager::setup() {
 	bSaveImages = false;	// for live input, for making a movie.
 	bFrameNew = false;
 	
-	inputType = file;
+	
+	ofxXmlSettings XML;
+	XML.loadFile("inputsettings.xml");
+	int which = XML.getValue("input", 0);
+
+	if (which == 0){
+		inputType = edsdk;
+	} else if (which == 1){
+		inputType = file;
+	} else {
+	inputType = webcam;	
+	}
+	
+	
 	
 	if (inputType == file){
 		video.loadMovie("face3.mov");

@@ -1,0 +1,4 @@
+<receiver>
+    <host>localhost</host>
+    <port>9797</port>
+</receiver>
