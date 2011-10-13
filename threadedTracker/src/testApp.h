@@ -26,6 +26,7 @@
 #include "ofxCvGrayscaleImage.h"
 
 
+
 class testApp : public ofBaseApp {
 public:
 	void setup();
@@ -57,5 +58,10 @@ public:
 	ofImage colorImg2;
 	
 	float lastChange;
+	
+	ofImage logo;
+	float nonFaceFoundEnergy;
+	int nFramesNotFoundFace;
+	
 	
 };

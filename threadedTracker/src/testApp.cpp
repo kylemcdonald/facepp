@@ -22,8 +22,8 @@ void testApp::setup() {
 	panel.addPanel("Cam");
 	panel.setWhichPanel("Cam");
 	panel.addSlider("camResize", "camResize", 0.5, 0.1, 1.0, false);
-	
 	panel.hide();
+	
 	
 	trackingPixels.allocate(640,480, OF_PIXELS_RGB);
 	
@@ -56,6 +56,12 @@ void testApp::setup() {
 	ofHideCursor();
 	
 	lastChange = ofGetElapsedTimef();
+	
+	// display something on no one present
+	nonFaceFoundEnergy = 0;
+	nFramesNotFoundFace = 0;
+	logo.loadImage("images/logo.png");
+	
 }
 
 void testApp::update() {
@@ -80,6 +86,19 @@ void testApp::update() {
 	} else {
 		
 	}
+	
+	if (tracker.getFound() == true){
+		nFramesNotFoundFace=0;
+		nonFaceFoundEnergy = 0.8f * nonFaceFoundEnergy + 0.2 * 0.0;	
+	} else {
+		nFramesNotFoundFace++;
+		if (nFramesNotFoundFace > 40){
+			nonFaceFoundEnergy = 0.995f * nonFaceFoundEnergy + 0.005 * 1.0;	
+		}
+		
+	}
+	
+	
 	//TT.copyFaceTracker(tracker);
 	
 	EM.update(tracker);	
@@ -273,6 +292,7 @@ void testApp::draw() {
 	ofDisableAlphaBlending();
 	ofSetColor(255,255,255);
 	
+	ofPushMatrix();
 	ofTranslate(1024, 0,0);
 	ofScale(-1,1,1);
 	
@@ -290,7 +310,15 @@ void testApp::draw() {
 	if (whoToDraw == 2) ES.draw(640,480);
 	if (whoToDraw == 3) LS.draw(640,480);
 	
+	ofPopMatrix();
 	
+	if (nonFaceFoundEnergy > 0.01){
+	
+		ofEnableAlphaBlending();
+		ofSetColor(255,255,255,255*nonFaceFoundEnergy);
+		logo.draw(21, 548);
+		//cout << mouseX << " " << mouseY << endl;
+	}
 	
 	//colorImg2.draw(mouseX, mouseY);
 }
