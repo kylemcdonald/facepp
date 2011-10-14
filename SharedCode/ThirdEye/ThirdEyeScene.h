@@ -215,22 +215,50 @@ public:
 		
 	}
 	
+	
+	void drawRing(ofPoint pos, float rad, bool bInward, float startAngle, int ndivisions){
+		
+		float angleStart = startAngle;
+		float angle = 0;
+		float angle2;
+		float radius = (rad/4) * scale;
+		float ndiv = ndivisions;
+		float ndiv_m_1 = ndiv - 1;
+		for (int i = 0; i < (ndivisions); i++){
+			angle = angleStart + ((float)i/(ndiv)) * TWO_PI;
+			angle2 = angle + ((float)1.0/(ndiv)) * TWO_PI;
+			ofPoint ptA, ptB, ptC;
+			float angle3 = (angle+angle2)/2.0;
+			ptA.set(pos.x + radius * cos(angle), pos.y + radius * sin(angle));
+			ptB.set(pos.x + radius * cos(angle2), pos.y + radius * sin(angle2));
+			float dist = (ptA-ptB).length();
+			ptC.set(pos.x + (radius + (bInward ? -1 : 1) * (sqrt(3)/2.0)*dist) * cos(angle3), 
+					pos.y + (radius +  (bInward ? -1 : 1) * (sqrt(3)/2.0)*dist) * sin(angle3));
+			ofTriangle(ptA, ptB, ptC);
+			//ofCircle(eyeSmoothed.x + radius * cos(angle), eyeSmoothed.y + radius * sin(angle), 6);
+		}
+	}
+	
+	
 	void draw()  {
 		clone.draw();
 		
 		ofEnableAlphaBlending();
-		ofSetColor(255,255,255,80*cyclopsEnergy);
 		
-		float angleStart = ofGetElapsedTimef()/2.0;
-		float angle = 0;
-		float angle2;
-		float radius = (130/4) * scale;
-		for (int i = 0; i < 40; i++){
-			angle = angleStart + ((float)i/(40.0-1)) * TWO_PI;
-			angle2 = angle + ((float)1.0/(40.0-1)) * TWO_PI;
-			ofCircle(eyeSmoothed.x + radius * cos(angle), eyeSmoothed.y + radius * sin(angle), 6);
-		}
+		ofSetColor(255,255,255,80*cyclopsEnergy * 0.6);
+		drawRing(eyeSmoothed, 130, false, ofGetElapsedTimef()/2, 40);
+		
+		ofSetColor(255,255,255,80*cyclopsEnergy * 0.6);
+		drawRing(eyeSmoothed, 128, true, -ofGetElapsedTimef()/2, 40);
+		
+		ofSetColor(255,255,255,80*cyclopsEnergy * 0.8);
+		drawRing(eyeSmoothed, 110, true, -(ofGetElapsedTimef()/3.0), 60);
+		
 		ofSetColor(255);
+		
+		
+		
+		
 		colorAlphaTex.draw(0,0);
 	}
 };
