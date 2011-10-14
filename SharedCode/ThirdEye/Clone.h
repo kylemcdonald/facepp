@@ -11,7 +11,7 @@ public:
 	
 	ofPoint darkPoint;
 	
-protected:
+//protected:
 	void maskedBlur(ofTexture& tex, ofTexture& mask,  ofFbo& result);
 	ofFbo buffer, srcBlur, dstBlur;
 	ofShader maskBlurShader, cloneShader;

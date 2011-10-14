@@ -135,84 +135,93 @@ void testApp::update() {
 	
 	
 	if (whoToDraw == 0) {
+		
+		TS.generateMaskTex(tracker, IM.getTrackingPixels());
+		
 		if (tracker.getFound()){
 		
-		static int pts[13] = {1,0,17,18,19,20,23,24,25,26,16,15,28};
-		ofPoint min, max;
-		min.set(640,480,0);
-		max.set(0,0,0);
-		for (int i = 0; i < 13; i++){
-			min.x = MIN(min.x, tracker.getImagePoint(pts[i]).x);
-			min.y = MIN(min.y, tracker.getImagePoint(pts[i]).y);
-			max.x = MAX(max.x, tracker.getImagePoint(pts[i]).x);
-			max.y = MAX(max.y, tracker.getImagePoint(pts[i]).y);
-		}
+			// all cyclops related, and didn't work so great with the actual camera. 
+			// looks pretty ok against the test video
+			
+		//static int pts[13] = {1,0,17,18,19,20,23,24,25,26,16,15,28};
+//		ofPoint min, max;
+//		min.set(640,480,0);
+//		max.set(0,0,0);
+//		for (int i = 0; i < 13; i++){
+//			min.x = MIN(min.x, tracker.getImagePoint(pts[i]).x);
+//			min.y = MIN(min.y, tracker.getImagePoint(pts[i]).y);
+//			max.x = MAX(max.x, tracker.getImagePoint(pts[i]).x);
+//			max.y = MAX(max.y, tracker.getImagePoint(pts[i]).y);
+//		}
+//		
+//		maskArea.set(0);
+//		ofxCvBlob blob;
+//		for (int i = 0; i < 13; i++){
+//			blob.pts.push_back(	ofPoint(tracker.getImagePoint(pts[i]).x, tracker.getImagePoint(pts[i]).y+3));
+//		}
+//		blob.nPts = 13;
+//		maskArea.drawBlobIntoMe(blob, 255);
+//			
+//		//maskArea.setROI(min.x, min.y, max.x - min.x, max.y-min.y);
+//		maskArea.blur(11);
+//		maskArea.blur(3);	
+//		maskArea.blur(3);	
+//			
+//		colorImg.setFromPixels(IM.getTrackingPixels(), 640, 480);
+//		colorImg.setROI(min.x-2, min.y-2, max.x - min.x+4, max.y-min.y+4);
+//		colorImg.blur(11);
+//		colorImg.blur(11);
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.dilate();
+//		colorImg.blur(11);
+//		colorImg.blur(11);
+//		colorImg.blur(11);
+//		colorImg.blur(11);
+//		
+//		colorImg2.setFromPixels(IM.getTrackingPixels(), 640, 480, OF_IMAGE_COLOR);
+//		
+//			unsigned char * colPixes = colorImg.getPixels();
+//			unsigned char * colPixes2 = colorImg2.getPixels();
+//			unsigned char * grayPixels = maskArea.getPixels();
+//			for (int i = 0; i < 640*480; i++){
+//				if (grayPixels[i] > 0){
+//					float pct = (float)grayPixels[i]/255.0;
+//					colPixes2[i*3+0] = pct * colPixes[i*3+0] + (1-pct) * colPixes2[i*3+0];
+//					colPixes2[i*3+1] = pct * colPixes[i*3+1] + (1-pct) * colPixes2[i*3+1];
+//					colPixes2[i*3+2] = pct * colPixes[i*3+2] + (1-pct) * colPixes2[i*3+2];
+//					
+//				}
+//			}
+//			
+//			colorImg2.update();
+//			
+//		} else {
+//			colorImg2.setFromPixels(IM.getTrackingPixels(), 640, 480, OF_IMAGE_COLOR);
+//		}
 		
-		maskArea.set(0);
-		ofxCvBlob blob;
-		for (int i = 0; i < 13; i++){
-			blob.pts.push_back(	ofPoint(tracker.getImagePoint(pts[i]).x, tracker.getImagePoint(pts[i]).y+3));
-		}
-		blob.nPts = 13;
-		maskArea.drawBlobIntoMe(blob, 255);
-			
-		//maskArea.setROI(min.x, min.y, max.x - min.x, max.y-min.y);
-		maskArea.blur(11);
-		maskArea.blur(3);	
-		maskArea.blur(3);	
-			
-		colorImg.setFromPixels(IM.getTrackingPixels(), 640, 480);
-		colorImg.setROI(min.x-2, min.y-2, max.x - min.x+4, max.y-min.y+4);
-		colorImg.blur(11);
-		colorImg.blur(11);
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.dilate();
-		colorImg.blur(11);
-		colorImg.blur(11);
-		colorImg.blur(11);
-		colorImg.blur(11);
-		
-		colorImg2.setFromPixels(IM.getTrackingPixels(), 640, 480, OF_IMAGE_COLOR);
-		
-			unsigned char * colPixes = colorImg.getPixels();
-			unsigned char * colPixes2 = colorImg2.getPixels();
-			unsigned char * grayPixels = maskArea.getPixels();
-			for (int i = 0; i < 640*480; i++){
-				if (grayPixels[i] > 0){
-					float pct = (float)grayPixels[i]/255.0;
-					colPixes2[i*3+0] = pct * colPixes[i*3+0] + (1-pct) * colPixes2[i*3+0];
-					colPixes2[i*3+1] = pct * colPixes[i*3+1] + (1-pct) * colPixes2[i*3+1];
-					colPixes2[i*3+2] = pct * colPixes[i*3+2] + (1-pct) * colPixes2[i*3+2];
-					
-				}
-			}
-			
-			colorImg2.update();
-			
-		} else {
 			colorImg2.setFromPixels(IM.getTrackingPixels(), 640, 480, OF_IMAGE_COLOR);
+			TS.texy = &colorImg2.getTextureReference();
+			
 		}
 		
-		TS.texy = &colorImg2.getTextureReference();
 		TS.update(tracker, IM.img.getTextureReference());
 	}
 	
-	
 	if ((ofGetElapsedTimef() - lastChange)  > 51){
-		keyPressed(OF_KEY_RIGHT);
-		lastChange = ofGetElapsedTimef();
+		//keyPressed(OF_KEY_RIGHT);
+		//lastChange = ofGetElapsedTimef();
 	}
 	
 // for audio
@@ -350,14 +359,14 @@ void testApp::keyPressed(int key) {
 		
 		whoToDraw--;
 		if (whoToDraw < 0) whoToDraw += 4;
-		if (whoToDraw == 0) keyPressed(OF_KEY_LEFT);
+		//if (whoToDraw == 0) keyPressed(OF_KEY_LEFT);
 		if (whoToDraw == 3) keyPressed(OF_KEY_LEFT);
 		ofxDaito::bang("scene", whoToDraw);
 		
 	} else if (key == OF_KEY_RIGHT){
 		whoToDraw++;
 		whoToDraw %= 4;
-		if (whoToDraw == 0) keyPressed(OF_KEY_RIGHT);
+		//if (whoToDraw == 0) keyPressed(OF_KEY_RIGHT);
 		if (whoToDraw == 3) keyPressed(OF_KEY_RIGHT);
 		ofxDaito::bang("scene", whoToDraw);
 

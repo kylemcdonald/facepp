@@ -37,7 +37,7 @@ void main() {\
 		vec4 dstColorBlur = texture2DRect(dstBlur, pos);\
 		vec3 offset = (dstColorBlur.rgb - srcColorBlur.rgb);\
 		float dist = distance(posForDarkness,gl_FragCoord.xy);\
-		float pct =  ( dist / 30.0);\
+		float pct =  ( dist / 10.0);\
 		if (pct > 1.0) pct = 1.0;\
 		if (pct < 0.0) pct = 0.0;\
 		pct = 1.0 - pct;\
