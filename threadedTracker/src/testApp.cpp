@@ -359,16 +359,16 @@ void testApp::keyPressed(int key) {
 		
 		whoToDraw--;
 		if (whoToDraw < 0) whoToDraw += 4;
-		//if (whoToDraw == 0) keyPressed(OF_KEY_LEFT);
+		/*if (whoToDraw == 0) keyPressed(OF_KEY_LEFT);
 		if (whoToDraw == 3) keyPressed(OF_KEY_LEFT);
-		ofxDaito::bang("scene", whoToDraw);
+		*/ofxDaito::bang("scene", whoToDraw);
 		
 	} else if (key == OF_KEY_RIGHT){
 		whoToDraw++;
 		whoToDraw %= 4;
-		//if (whoToDraw == 0) keyPressed(OF_KEY_RIGHT);
+		/*if (whoToDraw == 0) keyPressed(OF_KEY_RIGHT);
 		if (whoToDraw == 3) keyPressed(OF_KEY_RIGHT);
-		ofxDaito::bang("scene", whoToDraw);
+		*/ofxDaito::bang("scene", whoToDraw);
 
 	}
 	

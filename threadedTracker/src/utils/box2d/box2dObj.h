@@ -35,9 +35,18 @@ public:
 	} 
 	
 	void update(){
+		
+		bCollition = false;
 		currentVelocity=getVelocity();
-		if (previousVelocity.x * currentVelocity.x < -1 || previousVelocity.y * currentVelocity.y < -1) {
-			bCollition = true;
+		float angleDiff = (atan2(previousVelocity.y, previousVelocity.x) - atan2(currentVelocity.y, currentVelocity.x));
+		while (angleDiff < -PI) angleDiff += TWO_PI;
+		while (angleDiff > PI) angleDiff -= TWO_PI;
+		
+		if (fabs(angleDiff) > PI/1.3) {
+			if (currentVelocity.length() > 2.3){
+				bCollition = true;
+				//printf("collision %f %f \n", getPosition().x, getPosition().y);
+			}
 		}
 		previousVelocity = currentVelocity;
 	}
