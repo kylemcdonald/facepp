@@ -23,10 +23,25 @@ void drawTriangleRing(float radius, float theta, float height, bool direction, i
 	mesh.draw();
 }
 
-void drawMandala(ofVec2f position, float radius) {
-	ofSetColor(255, 128);
+void ofApp::drawMandala(ofVec2f position, float radius) {
 	ofTranslate(position.x, position.y);
-	drawTriangleRing(130, -(ofGetElapsedTimef()/8.0), 8, false, 80);
+	
+	ofColor cyan(0, 174, 239), magenta(236, 0, 140), yellow(255, 242, 0);
+	
+	ofPushStyle();
+	ofEnableBlendMode(OF_BLENDMODE_ADD);
+	float pulseTheta = ofGetElapsedTimef() / 64;
+	float pulseAlpha = 64;
+	float pulseLength = 16;
+	ofSetColor(cyan, pulseAlpha);
+	drawTriangleRing(110, pulseTheta * 5, pulseLength, false, 79);
+	ofSetColor(magenta, pulseAlpha);
+	drawTriangleRing(120, pulseTheta * 7, pulseLength, false, 83);
+	ofSetColor(yellow, pulseAlpha);
+	drawTriangleRing(130, pulseTheta * 11, pulseLength, false, 89);
+	ofPopStyle();
+	
+	ofSetColor(255, 128);
 	drawTriangleRing(130, ofGetElapsedTimef()/2, 1, false, 40);
 	drawTriangleRing(128, -ofGetElapsedTimef()/2, 1, true, 40);
 	drawTriangleRing(110, -(ofGetElapsedTimef()/3.0), 1, true, 60);
