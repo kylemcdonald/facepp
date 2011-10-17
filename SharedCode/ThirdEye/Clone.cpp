@@ -12,7 +12,7 @@ void main() {\
 		vec2 curOffset = float(i) * direction;\
 		vec4 leftMask = texture2DRect(mask, pos - curOffset);\
 		vec4 rightMask = texture2DRect(mask, pos + curOffset);\
-		bool valid = leftMask.r > 0. && rightMask.r > 0.;\
+		bool valid = leftMask.r == 1. && rightMask.r == 1.;\
 		if(valid) {\
 			sum +=\
 				texture2DRect(tex, pos + curOffset) +\
@@ -37,11 +37,8 @@ void main() {\
 		vec4 dstColorBlur = texture2DRect(dstBlur, pos);\
 		vec3 offset = (dstColorBlur.rgb - srcColorBlur.rgb);\
 		float dist = distance(posForDarkness,gl_FragCoord.xy);\
-		float pct =  ( dist / 10.0);\
-		if (pct > 1.0) pct = 1.0;\
-		if (pct < 0.0) pct = 0.0;\
-		pct = 1.0 - pct;\
-		offset.rgb = (1.0-pct) * offset.rgb + (pct)*(offset.rgb / (1.0 + maskVal.r));\									
+		float pct = clamp(dist / 10., 0., 1.);\
+		offset.rgb = mix(offset.rgb / (1.0 + maskVal.r), offset.rgb, pct);\
 		gl_FragColor = vec4(srcColor + offset, 1.);\
 	} else {\
 		gl_FragColor = vec4(0.);\
