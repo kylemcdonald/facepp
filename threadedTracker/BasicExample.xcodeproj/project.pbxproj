@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		922651C9144BE953009097E0 /* TriangleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 922651C8144BE953009097E0 /* TriangleScene.cpp */; };
 		92AF763B1446B59800148D3B /* DPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF76241446B59800148D3B /* DPP.framework */; };
 		92AF763C1446B59800148D3B /* EDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF76251446B59800148D3B /* EDSDK.framework */; };
 		92AF763D1446B59800148D3B /* EdsExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF762F1446B59800148D3B /* EdsExamples.cpp */; };
@@ -193,6 +194,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		922651C7144BE83B009097E0 /* TriangleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleScene.h; sourceTree = "<group>"; };
+		922651C8144BE953009097E0 /* TriangleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleScene.cpp; sourceTree = "<group>"; };
 		92AF76231446B59800148D3B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/.gitignore; sourceTree = SOURCE_ROOT; };
 		92AF76241446B59800148D3B /* DPP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DPP.framework; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/DPP.framework; sourceTree = SOURCE_ROOT; };
 		92AF76251446B59800148D3B /* EDSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EDSDK.framework; path = ../../../addons/ofxEdsdk/lib/EDSDK/Framework/EDSDK.framework; sourceTree = SOURCE_ROOT; };
@@ -1116,6 +1119,8 @@
 		92E447A31444947600C7AE2B /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				922651C7144BE83B009097E0 /* TriangleScene.h */,
+				922651C8144BE953009097E0 /* TriangleScene.cpp */,
 				92E44D0514452D3100C7AE2B /* eyebrowScene.h */,
 				92E44D0614452D3100C7AE2B /* eyebrowScene.cpp */,
 				92E44A001445023B00C7AE2B /* NoiseRibbons */,
@@ -1945,6 +1950,7 @@
 				92AF763F1446B59800148D3B /* EdsStrings.cpp in Sources */,
 				92AF76401446B59800148D3B /* EdsWrapper.cpp in Sources */,
 				92AF76411446B59800148D3B /* ofxEdsdk.cpp in Sources */,
+				922651C9144BE953009097E0 /* TriangleScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
