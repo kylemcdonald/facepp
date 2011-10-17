@@ -39,7 +39,10 @@ public:
 		mesh.drawFaces();
 	}
 
-	void drawMandala(ofVec2f position, float radius) {
+	void drawMandala(ofVec2f position) {
+		ofPushStyle();
+		ofPushMatrix();
+	
 		ofTranslate(position.x, position.y);
 		
 		ofColor cyan(0, 174, 239), magenta(236, 0, 140), yellow(255, 242, 0);
@@ -72,6 +75,9 @@ public:
 		
 		ofSetColor(255, 32);
 		drawRing(240, ofGetElapsedTimef()/2, 1, false, 30, true, 3, 120);
+		ofPopStyle();
+		
+		ofPopMatrix();
 		ofPopStyle();
 	}
 };

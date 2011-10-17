@@ -10,7 +10,7 @@ void ofApp::draw() {
 	ofBackground(0);
 	ofEnableAlphaBlending();
 	ofEnableSmoothing();
-	mandala.drawMandala(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2), mouseX);
+	mandala.drawMandala(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
 	ofSetColor(255);
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()) + " " + ofToString(mouseX), 10, 20);
 }

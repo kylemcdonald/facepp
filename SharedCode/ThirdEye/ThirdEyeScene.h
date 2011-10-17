@@ -6,6 +6,7 @@
 #include "ofxCv.h"
 #include "ofxCvGrayscaleImage.h"
 #include "meshForeheadAdder.h"
+#include "Mandala.h"
 
 class ThirdEyeScene {
 public:
@@ -15,9 +16,8 @@ public:
 	float thirdHeight, thirdMaskSize, thirdSize, strength;
 	ofTexture * texy;
 	float cyclopsEnergy;
+	Mandala mandala;
 	
-	
-	float scale;
 	ofPoint eyeSmoothed;
 	
 	// bg stuff: 
@@ -94,7 +94,7 @@ public:
 	void setup(int width, int height) {
 		
 		
-		scale = 4;
+		mandala.scale = 4;
 		clone.setup(width, height);
 		
 		ofFbo::Settings settings;
@@ -187,7 +187,7 @@ public:
 			clone.setStrength(cyclopsEnergy*180);
 			clone.update(src.getTextureReference(), *texy, cam, cyclopsEnergy, mask.getTextureReference());		
 			eyeSmoothed = 0.95f * eyeSmoothed + 0.05 * thirdPosition;
-			scale =  0.95f * scale + 0.05 * tracker.getScale();
+			mandala.scale =  0.95f * mandala.scale + 0.05 * tracker.getScale();
 			
 			
 		} else {
@@ -213,52 +213,15 @@ public:
 		
 		colorAlphaTex.loadData(colorAlphaPix, 640,480, GL_RGBA);
 		
-	}
-	
-	
-	void drawRing(ofPoint pos, float rad, bool bInward, float startAngle, int ndivisions){
-		
-		float angleStart = startAngle;
-		float angle = 0;
-		float angle2;
-		float radius = (rad/4) * scale;
-		float ndiv = ndivisions;
-		float ndiv_m_1 = ndiv - 1;
-		for (int i = 0; i < (ndivisions); i++){
-			angle = angleStart + ((float)i/(ndiv)) * TWO_PI;
-			angle2 = angle + ((float)1.0/(ndiv)) * TWO_PI;
-			ofPoint ptA, ptB, ptC;
-			float angle3 = (angle+angle2)/2.0;
-			ptA.set(pos.x + radius * cos(angle), pos.y + radius * sin(angle));
-			ptB.set(pos.x + radius * cos(angle2), pos.y + radius * sin(angle2));
-			float dist = (ptA-ptB).length();
-			ptC.set(pos.x + (radius + (bInward ? -1 : 1) * (sqrt(3)/2.0)*dist) * cos(angle3), 
-					pos.y + (radius +  (bInward ? -1 : 1) * (sqrt(3)/2.0)*dist) * sin(angle3));
-			ofTriangle(ptA, ptB, ptC);
-			//ofCircle(eyeSmoothed.x + radius * cos(angle), eyeSmoothed.y + radius * sin(angle), 6);
-		}
-	}
-	
+	}	
 	
 	void draw()  {
 		clone.draw();
 		
 		ofEnableAlphaBlending();
+		mandala.drawMandala(eyeSmoothed);
 		
-		ofSetColor(255,255,255,80*cyclopsEnergy * 0.6);
-		drawRing(eyeSmoothed, 130, false, ofGetElapsedTimef()/2, 40);
-		
-		ofSetColor(255,255,255,80*cyclopsEnergy * 0.6);
-		drawRing(eyeSmoothed, 128, true, -ofGetElapsedTimef()/2, 40);
-		
-		ofSetColor(255,255,255,80*cyclopsEnergy * 0.8);
-		drawRing(eyeSmoothed, 110, true, -(ofGetElapsedTimef()/3.0), 60);
-		
-		ofSetColor(255);
-		
-		
-		
-		
+		ofSetColor(255);		
 		colorAlphaTex.draw(0,0);
 	}
 };
