@@ -106,13 +106,13 @@ ofMesh convertToIndices(ofMesh& mesh) {
 		light.enable();
 		color.set(ofRandom(0,255), ofRandom(0,255), ofRandom(0,255));
 		color.y = ofRandom(0,255);
-		if (ofRandom(0,1) > 0.5) direction = -1;
-		else direction = 1;
+		//if (ofRandom(0,1) > 0.5) direction = -1;
+		//else
+			direction = 1;
 		sinSpeed = ofRandom(2,4);
 		cosSpeed = sinSpeed;//ofRandom(2,4);
 		
 		angleChange = ofRandom(-PI, PI);
-		
 		randomOffset = ofRandom(-100,100);
 	}
 	void spinningLight::update(){
@@ -121,7 +121,7 @@ ofMesh convertToIndices(ofMesh& mesh) {
 		position += cos(angleChange*direction) * cosVal;
 		position += sin(angleChange*direction) * sinVal;
 		
-		angleChange += energy;
+		angleChange += 0.05;;
 		energy *= 0.967f;
 	}
 	

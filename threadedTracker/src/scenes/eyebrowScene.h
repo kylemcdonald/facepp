@@ -55,8 +55,17 @@ public:
 	}
 	void makeLine(int lineID, int a, int b, bool bConnectBeginAndEnd, bool disapear = false){
 		lineStrips[lineID].setWorld(physics.getWorld());
+		
+		
+		
+		if (lines[lineID].size() > 1){
+			lineStrips[lineID].destroyShape();
+		}
+		
 		lineStrips[lineID].clear();
 		lines[lineID].clear();
+		
+		
 		if (disapear == true) return;
 		
 		for (int j=0; j<66; j++) {

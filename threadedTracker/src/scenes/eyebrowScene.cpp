@@ -129,16 +129,30 @@ void eyebrowScene::update(){
 	}	
 	}
 	
+	
+	for(int i=0; i < circles.size(); i++) {
+		circles[i].update();
+		if (circles[i].bCollition == true){
+			ofxDaito::bang("bouncing", circles[i].getPosition().x);
+		}
+	}
+
+	
+	
 	if (circles.size()>130) {
 	
 		
-			circles[0].destroyShape();
+		physics.world->DestroyBody(circles[0].body);
+		
+			//circles[0].destroyShape();
 			circles.erase(circles.begin());
 		
 	}
 	
 	if (ofGetFrameRate() < 24){
-		circles[0].destroyShape();
+		
+		physics.world->DestroyBody(circles[0].body);
+		//circles[0].destroyShape();
 		circles.erase(circles.begin());
 	}
 	
@@ -155,7 +169,8 @@ void eyebrowScene::update(){
 		
 		if (mpos.y > ofGetHeight()) {
 			
-			circles[i].destroyShape();
+			physics.world->DestroyBody(circles[i].body);
+			//circles[i].destroyShape();
 			vector<CustomCircle>::iterator it = circles.begin() + i;
 			circles.erase(it);				
 		}

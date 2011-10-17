@@ -121,6 +121,11 @@ void NoiseParticle::updateAll(float dt) {
 	globalOffset += confusion * direction * dt;
 	age += dt;
 	forces.clear();
+	for (int  i = 0; i < particles.size(); i++){
+		if (isInvisible(particles[i])){
+			particles[i].trail.clear(); 
+		}
+	}
 	ofRemove(particles, isInvisible);
 }
 
