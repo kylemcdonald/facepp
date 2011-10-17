@@ -4,21 +4,23 @@ float scale = 4;
 		
 void drawTriangleRing(float radius, float theta, float height, bool direction, int count) {
 	radius *= scale / 4;
-	float angle = 0;
-	float angle2;
 	height *= (sqrt(3) / 2) * (direction ? -1 : 1);
+	ofMesh mesh;
+	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
 	for (int i = 0; i < (count); i++){
-		angle = theta + (i * TWO_PI) / count;
-		angle2 = angle + TWO_PI / count;
-		ofPoint ptA, ptB, ptC;
-		float angle3 = (angle+angle2)/2.0;
-		ptA.set(radius * cos(angle), radius * sin(angle));
-		ptB.set(radius * cos(angle2), radius * sin(angle2));
-		float dist = (ptA-ptB).length();
-		ptC.set((radius + height * dist) * cos(angle3), 
-				(radius +  height * dist) * sin(angle3));
-		ofTriangle(ptA, ptB, ptC);
+		float angle1 = theta + (i * TWO_PI) / count;
+		float angle2 = angle1 + TWO_PI / count;
+		float angle3 = (angle1 + angle2)/2.0;
+		ofVec2f pt1(radius * cos(angle1), radius * sin(angle1));
+		ofVec2f pt2(radius * cos(angle2), radius * sin(angle2));
+		float side = pt1.distance(pt2);
+		ofVec2f pt3((radius + height * side) * cos(angle3), 
+				(radius +  height * side) * sin(angle3));
+		mesh.addVertex(pt1);
+		mesh.addVertex(pt2);
+		mesh.addVertex(pt3);
 	}
+	mesh.draw();
 }
 
 void drawMandala(ofVec2f position, float radius) {
