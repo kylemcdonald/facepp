@@ -92,7 +92,8 @@ void testApp::update() {
 			src.end();
 	
 			clone.setStrength(ofMap(mouseX, 0, ofGetWidth(), 0, 500, true));
-			clone.update(src.getTextureReference(), cam.getTextureReference(), mask.getTextureReference());		
+			float cyclopsEnergy = 0;
+			clone.update(src.getTextureReference(), cam.getTextureReference(), cam.getTextureReference(), cyclopsEnergy, mask.getTextureReference());		
 		}
 	}
 }
