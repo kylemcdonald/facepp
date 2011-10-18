@@ -219,7 +219,9 @@ public:
 		clone.draw();
 		
 		ofEnableAlphaBlending();
-		mandala.drawMandala(eyeSmoothed);
+		mandala.drawMandala(eyeSmoothed, cyclopsEnergy*0.4);
+		
+		ofEnableAlphaBlending();
 		
 		ofSetColor(255);		
 		colorAlphaTex.draw(0,0);

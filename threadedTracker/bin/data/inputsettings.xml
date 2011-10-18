@@ -3,4 +3,4 @@
 
 <!-- 0 = live (edsdk), 1 = file, 2 = webcam -->
 
-<input>2</input>
+<input>1</input>

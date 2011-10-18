@@ -39,45 +39,45 @@ public:
 		mesh.drawFaces();
 	}
 
-	void drawMandala(ofVec2f position) {
+	void drawMandala(ofVec2f position, float alpha) {
 		ofPushStyle();
-		ofPushMatrix();
-	
-		ofTranslate(position.x, position.y);
+			ofPushMatrix();
 		
-		ofColor cyan(0, 174, 239), magenta(236, 0, 140), yellow(255, 242, 0);
-		
-		ofPushStyle();
-		ofEnableBlendMode(OF_BLENDMODE_ADD);
-		float pulseTheta = ofGetElapsedTimef() / 128;
-		float pulseAlpha = 64;
-		float pulseLength = 16;
-		float pulseDeviation = .4;
-		float phase1 = 1 + pulseDeviation * sin(ofGetElapsedTimef() + TWO_PI * 0 / 3);
-		float phase2 = 1 + pulseDeviation * sin(ofGetElapsedTimef() + TWO_PI * 1 / 3);
-		float phase3 = 1 + pulseDeviation * sin(ofGetElapsedTimef() + TWO_PI * 2 / 3);
-		ofNoFill();
-		ofSetColor(cyan, pulseAlpha);
-		drawRing(110, pulseTheta * 5, pulseLength * phase1, false, 79, true, 3, 207);
-		ofSetColor(magenta, pulseAlpha);
-		drawRing(120, pulseTheta * 7, pulseLength * phase2, false, 83, true, 7, 88);
-		ofSetColor(yellow, pulseAlpha);
-		drawRing(130, -pulseTheta * 11, pulseLength * phase3, false, 89, true, 5, 160);
-		ofPopStyle();
-		
-		ofPushStyle();
-		ofNoFill();
-		ofSetColor(255, 128);
-		drawRing(110, -(ofGetElapsedTimef()/3.0), 1, true, 60, true, 6, 4);
-		ofFill();
-		drawRing(128, -ofGetElapsedTimef()/2, 1, true, 40, true, 4, 8);
-		drawRing(130, ofGetElapsedTimef()/2, 1, false, 40, true, 3, 16);
-		
-		ofSetColor(255, 32);
-		drawRing(240, ofGetElapsedTimef()/2, 1, false, 30, true, 3, 120);
-		ofPopStyle();
-		
-		ofPopMatrix();
+			ofTranslate(position.x, position.y);
+			
+			ofColor cyan(0, 174, 239), magenta(236, 0, 140), yellow(255, 242, 0);
+			
+			ofPushStyle();
+				ofEnableBlendMode(OF_BLENDMODE_ADD);
+				float pulseTheta = ofGetElapsedTimef() / 128;
+				float pulseAlpha = 64;
+				float pulseLength = 16;
+				float pulseDeviation = .4;
+				float phase1 = 1 + pulseDeviation * sin(ofGetElapsedTimef() + TWO_PI * 0 / 3);
+				float phase2 = 1 + pulseDeviation * sin(ofGetElapsedTimef() + TWO_PI * 1 / 3);
+				float phase3 = 1 + pulseDeviation * sin(ofGetElapsedTimef() + TWO_PI * 2 / 3);
+				ofNoFill();
+				ofSetColor(cyan, pulseAlpha*alpha);
+				drawRing(110, pulseTheta * 5, pulseLength * phase1, false, 79, true, 3, 207);
+				ofSetColor(magenta, pulseAlpha*alpha);
+				drawRing(120, pulseTheta * 7, pulseLength * phase2, false, 83, true, 7, 88);
+				ofSetColor(yellow, pulseAlpha*alpha);
+				drawRing(130, -pulseTheta * 11, pulseLength * phase3, false, 89, true, 5, 160);
+			ofPopStyle();
+			
+			ofPushStyle();
+			ofNoFill();
+			ofSetColor(255, 128*alpha);
+			drawRing(110, -(ofGetElapsedTimef()/3.0), 1, true, 60, true, 6, 4);
+			ofFill();
+			drawRing(128, -ofGetElapsedTimef()/2, 1, true, 40, true, 4, 8);
+			drawRing(130, ofGetElapsedTimef()/2, 1, false, 40, true, 3, 16);
+			
+			ofSetColor(255, 32*alpha);
+			drawRing(240, ofGetElapsedTimef()/2, 1, false, 30, true, 3, 120);
+			ofPopStyle();
+			
+			ofPopMatrix();
 		ofPopStyle();
 	}
 };
