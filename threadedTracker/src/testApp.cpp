@@ -219,7 +219,7 @@ void testApp::update() {
 			
 		}
 		
-		TS.update(tracker, IM.img.getTextureReference());
+		TS.update(tracker, IM.img);
 	}
 	
 	if ((ofGetElapsedTimef() - lastChange)  > 51){

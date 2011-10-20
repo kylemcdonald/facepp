@@ -7,6 +7,7 @@
 #include "ofxCvGrayscaleImage.h"
 #include "meshForeheadAdder.h"
 #include "Mandala.h"
+#include "ofxDaito.h"
 
 class ThirdEyeScene {
 public:
@@ -17,6 +18,7 @@ public:
 	ofTexture * texy;
 	float cyclopsEnergy;
 	Mandala mandala;
+	ofPixels maskPixels;
 	
 	ofPoint eyeSmoothed;
 	
@@ -31,7 +33,7 @@ public:
 		
 		if (tracker.getFound()){
 			
-			cout << tracker.getScale() << endl;
+			//cout << tracker.getScale() << endl;
 			ofMesh indexd = tracker.getImageMesh();
 			addForheadToFaceMesh(indexd);
 			vector < ofPoint > ptsToAdd;
@@ -108,7 +110,7 @@ public:
 		thirdSize = .8;
 		strength = 100;
 		
-		maskArea.allocate(width, height); //, <#int h#>)
+		maskArea.allocate(width, height);
 		colorAlphaTex.allocate(width, height, GL_RGBA);
 		colorAlphaPix = new unsigned char [640*480*3];
 		
@@ -117,8 +119,8 @@ public:
 		tempPix.allocate(640,480, 4);
 	}
 	
-	void update(ofxFaceTracker& tracker, ofTexture& cam) {
-		
+	void update(ofxFaceTracker& tracker, ofImage& camImg) {
+		ofTexture& cam = camImg.getTextureReference();
 		
 		if (tracker.getFound()){
 			cyclopsEnergy = 0.99f * cyclopsEnergy + 0.01f * 1.0;
@@ -172,7 +174,31 @@ public:
 			ofEndShape(true);
 			mask.end();
 			
+			mask.readToPixels(maskPixels);
+			int w = maskPixels.getWidth();
+			int h = maskPixels.getHeight();
+			int n = w * h;
+			vector<float> eyePixels;
+			float mean = 0;
+			for(int y = 0; y < h; y++) {
+				for(int x = 0; x < w; x++) {
+					if(maskPixels.getColor(x, y).getBrightness() > 128) {
+						float cur = camImg.getPixelsRef().getColor(x, y).getBrightness() / 255.;
+						eyePixels.push_back(cur);
+						mean += cur;
+					}
+				}
+			}
+			mean /= eyePixels.size();
 			
+			float dev = 0;
+			for(int i = 0; i < eyePixels.size(); i++) {
+				dev += pow(eyePixels[i] - mean, 2);
+			}
+			dev = sqrt(dev / eyePixels.size());
+			
+			ofxDaito::bang("eyeBrightnessMean", mean);
+			ofxDaito::bang("eyeBrightnessDeviation", dev);
 			
 			src.begin();
 			
